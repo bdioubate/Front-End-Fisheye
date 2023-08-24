@@ -1,11 +1,11 @@
 function photographerTemplate(data) {
+    console.log(data)
     const { name, id, city, country, tagline, price, portrait } = data;
+
+    console.log(name)
 
     //Chemin de l'image du photographe
     const picture = `assets/photographers/${portrait}`;
-
-    //Balise du lien du photographe
-    const link = document.createElement( 'a' );
 
     function getUserCardDOM() {
         //Creation de la balise article photographer
@@ -20,7 +20,8 @@ function photographerTemplate(data) {
         article.appendChild(figure);
 
         //Balise a
-        link.addEventListener("click", navUserCardDOM);
+        const link = document.createElement( 'a' );
+        link.addEventListener("click", navUserCardDOM(link));
         figure.appendChild(link);
 
         //Images 
@@ -64,9 +65,57 @@ function photographerTemplate(data) {
         return (article);
     }
 
-    function navUserCardDOM() {
+    function navUserCardDOM(link) {
         link.href = "./photographer.html?id="+id
     }
 
-    return { name, id, city, country, tagline, price, picture, getUserCardDOM, navUserCardDOM }
+    function getPhotographerCardDom() {
+
+        //Div photographer-header
+        const photographerHeader = document.querySelector(".photograph-header");
+
+        //Creation de la  div .photographer profile
+        const photographerProfile = document.createElement( 'div' );
+        photographerProfile.setAttribute('id','photographer-profile')
+        photographerHeader.prepend(photographerProfile);
+
+        //Nom du photographe
+        const h1 = document.createElement( 'h1' );
+        h1.textContent = name;
+        photographerProfile.appendChild(h1);
+
+        //Creation de la balise div textPhotographerProfile
+        const div = document.createElement( 'div' );
+        div.setAttribute('id','text')
+        photographerProfile.appendChild(div);
+
+        //Localisation du photographe
+        const pLocation = document.createElement( 'p' );
+        pLocation.setAttribute('id','location')
+        pLocation.textContent = `${city}, ${country}`;
+        div.appendChild(pLocation);
+
+        //Slogan du photographe
+        const pTagline = document.createElement( 'p' );
+        pTagline.setAttribute('id','tagline')
+        pTagline.textContent = tagline;
+        div.appendChild(pTagline);
+
+        //Creation de la balise div user
+        const user = document.createElement( 'div' );
+        user.setAttribute('id','user')
+        photographerHeader.appendChild(user);
+
+        //Images du photographe dans la div #user
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture)
+        img.setAttribute("alt",`photo de ${name}`);
+        user.appendChild(img);
+
+
+        return (photographerHeader);
+    }
+
+
+    return { name, id, city, country, tagline, price, picture, getUserCardDOM, navUserCardDOM, getPhotographerCardDom }
 }
