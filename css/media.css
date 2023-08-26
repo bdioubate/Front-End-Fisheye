@@ -1,0 +1,103 @@
+/*Menu de selection*/
+#menu-selection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    margin: 0 100px;
+    width: 300px;
+}
+
+#menu-selection p{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#menu-selection #menu-deroulant button{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*Media Section*/
+#media-section {
+    display: inline-flex;
+    margin: 0 100px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 70px;
+}
+
+#media-section article {
+    height: 415px;
+    width: 350px;
+    border-radius: 5px;
+}
+
+#media-section article figure{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#media-section article a{
+    display: inline-block;
+    height: 350px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#media-section article img, #media-section article video{
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#media-section article figure figcaption{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#media-section article figure figcaption p{
+    color: #901C1C;
+    font-size: 24px;
+}
+
+#media-section article figure figcaption #likes-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
+}
+
+#encart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 50px;
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    background: #DB8876;
+    padding: 0 25px;
+}
+
+#encart #likes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50px;
+    height: 100%;
+}
+

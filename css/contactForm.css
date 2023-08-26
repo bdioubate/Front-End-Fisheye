@@ -1,0 +1,15 @@
+#contact_modal {
+    position: fixed;
+    top:0;
+    right: 0;
+    /*display: none;*/
+    max-height: 100vh;
+    min-height: 100vh;
+    width: 100%;
+    /*background-color: white;*/
+}
+
+#contact_modal form {
+    /*height: 900px;
+    width: 700px;*/
+}

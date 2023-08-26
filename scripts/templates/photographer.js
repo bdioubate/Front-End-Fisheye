@@ -1,8 +1,5 @@
-function photographerTemplate(data) {
-    console.log(data)
+function photographerTemplate(data) { 
     const { name, id, city, country, tagline, price, portrait } = data;
-
-    console.log(name)
 
     //Chemin de l'image du photographe
     const picture = `assets/photographers/${portrait}`;
@@ -11,9 +8,6 @@ function photographerTemplate(data) {
         //Creation de la balise article photographer
         const article = document.createElement( 'article' );
         article.setAttribute('class','photographer')
-
-        //Id du photographe ajouter a la balise article
-        //article.setAttribute('id',`${id}`)
 
         //Balise figure
         const figure = document.createElement( 'figure' );
