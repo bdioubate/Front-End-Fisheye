@@ -47,18 +47,19 @@
     border-radius: 5px;
 }
 
-#media-section article a{
+/*#media-section article a{
     display: inline-block;
     height: 350px;
     width: 100%;
     border-radius: 5px;
-}
+}*/
 
 #media-section article img, #media-section article video{
     height: 350px;
     width: 100%;
     object-fit: cover;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #media-section article figure figcaption{

@@ -17,16 +17,17 @@ function mediaTemplate(data, name) {
         const figure = document.createElement( 'figure' );
         article.appendChild(figure);
 
-        //Balise a
+        /*//Balise a
         const link = document.createElement( 'a' );
-        figure.appendChild(link);
+        figure.appendChild(link); cursor: pointer; displayModal()*/
 
         if(image){
             //Images 
             const img = document.createElement( 'img' );
             img.setAttribute("src", picture)
             //img.setAttribute("alt",`photo de ${name}`);
-            link.appendChild(img);
+            img.setAttribute("onclick","lightBoxModal()");
+            figure.appendChild(img);
         }
 
         if(video){
@@ -34,7 +35,7 @@ function mediaTemplate(data, name) {
             const videoPhographer = document.createElement( 'video' );
             videoPhographer.setAttribute("src", videoMedia)
             //video.setAttribute("alt",`photo de ${name}`);
-            link.appendChild(videoPhographer);
+            figure.appendChild(videoPhographer);
         }
 
         //balise figcaption
