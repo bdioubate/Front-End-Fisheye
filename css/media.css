@@ -80,6 +80,11 @@
     width: 60px;
 }
 
+#media-section article figure figcaption #likes-section .btnLikes{
+    color: #901C1C;
+    cursor: pointer;
+}
+
 #encart {
     display: flex;
     justify-content: space-between;

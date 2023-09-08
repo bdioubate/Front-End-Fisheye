@@ -1,11 +1,12 @@
 function mediaTemplate(data, name) {
+    console.log(data)
     const { id, photographerId, title, image, video, likes, date, price } = data;
 
     //Chemin de l'image du media
     const picture = `assets/media/${name}/${image}`;
 
     //Chemin de le video du media
-    const videoMedia = `assets/media/${name}/${video}`;
+    const videoMedia = `assets/media/${name}/${video}`; 
 
     function getPhotographerMediaDom() {
 
@@ -25,8 +26,8 @@ function mediaTemplate(data, name) {
             //Images 
             const img = document.createElement( 'img' );
             img.setAttribute("src", picture)
-            //img.setAttribute("alt",`photo de ${name}`);
-            img.setAttribute("onclick","lightBoxModal()");
+            img.setAttribute("alt",`${image}`);
+            img.setAttribute("onclick",`lightBoxModal(this.src)`);
             figure.appendChild(img);
         }
 
@@ -34,7 +35,8 @@ function mediaTemplate(data, name) {
             //Video 
             const videoPhographer = document.createElement( 'video' );
             videoPhographer.setAttribute("src", videoMedia)
-            //video.setAttribute("alt",`photo de ${name}`);
+            videoPhographer.setAttribute("alt",`${video}`);
+            videoPhographer.setAttribute("onclick",`lightBoxModal(this.src)`);
             figure.appendChild(videoPhographer);
         }
 
@@ -59,8 +61,8 @@ function mediaTemplate(data, name) {
 
         //Count likes img
         const iconLikesImg = document.createElement("i")
-        iconLikesImg.setAttribute("class","fa-solid fa-heart fa-xl")
-        iconLikesImg.setAttribute("style","color: #901C1C")
+        iconLikesImg.setAttribute("class","fa-regular fa-heart fa-xl btnLikes")
+        iconLikesImg.setAttribute("data-liked",false)
         likesSection.appendChild(iconLikesImg)
 
         return (article);
@@ -132,7 +134,6 @@ function mediaTemplate(data, name) {
         encart.appendChild(pPrice)
 
     }
-
 
     return { id, photographerId, title, image, video, likes, date, price, getPhotographerMediaDom, mediaSection, menuSelection, encartCard }
 }

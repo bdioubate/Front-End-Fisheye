@@ -1,12 +1,11 @@
 //Mettre le code JavaScript lié à la page photographer.html
-
 //Recuperation des data 
 async function getData() {
     // Récupération des data depuis le fichier JSON photographers.json
     const reponse = await fetch("./data/photographers.json");
     const data = await reponse.json();
 
-    return { data}
+    return {data}
 }
 
 async function getPhotographer() {
@@ -16,10 +15,8 @@ async function getPhotographer() {
     
     //fonction qui récupére l'id dans l’URL et qui crée une variable id
     const id = urlParams.get("id")
-
     // Récupération des data depuis le fichier JSON photographers.json
     const { data } = await getData();
-
     //Trouve l'index du photographe grace a findIndex
     const indexPhotographer = data.photographers.findIndex(photographer => JSON.stringify(photographer.id) === id);
 
@@ -58,13 +55,11 @@ async function getMedia(photographer) {
     //Media du photographe
     const allMediaPhotographer = data.media.filter(media => media.photographerId === photographerId);
 
-    console.log(allMediaPhotographer)
-
     return { allMediaPhotographer, photographerName } 
     
 }
 
-async function displayMedia(allMediaPhotographer, objectPhotographer) {
+function displayMedia(allMediaPhotographer, objectPhotographer) {
     const mediaEncart  = mediaTemplate(allMediaPhotographer[0],objectPhotographer.name)
     //Encart
     mediaEncart.encartCard(objectPhotographer.price);
@@ -92,6 +87,10 @@ async function initPhotographer() {
     const {allMediaPhotographer} = await getMedia(photographer);
     displayMedia(allMediaPhotographer, photographer[0])
 
-}
+    //Likes
+    btnLikes() 
+    
 
-initPhotographer();
+}
+initPhotographer()
+
