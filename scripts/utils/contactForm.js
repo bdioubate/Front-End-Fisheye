@@ -1,25 +1,31 @@
-//Balise header
-const header = document.querySelector("header");
+class contact{
 
-//Balise main
-const main = document.querySelector("main");
+    getVariable() {
+        //Balise header
+        const header = document.querySelector("header");
 
-function displayModal() {
-    //modal contact
-    const modal = document.getElementById("contact_modal");
+        //Balise main
+        const main = document.querySelector("main");    
+    }
+    
 
-    //header.style.display = "none";
-    //main.style.display = "none";
+    displayModal() {
+        //modal contact
+        const modal = document.getElementById("contact_modal");
 
-	modal.style.display = "block";
+        //header.style.display = "none";
+        //main.style.display = "none";
 
-}
+        modal.style.display = "block";
 
-function closeModal() {
-    const modal = document.getElementById("contact_modal");
+    }
 
-    //header.style.display = "flex";
-    //main.style.display = "block";
+    closeModal() {
+        const modal = document.getElementById("contact_modal");
 
-    modal.style.display = "none";
+        //header.style.display = "flex";
+        //main.style.display = "block";
+
+        modal.style.display = "none";
+    }
 }

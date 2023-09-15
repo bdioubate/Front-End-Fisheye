@@ -2,18 +2,31 @@
 #menu-selection {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    height: 200px;
+    align-items: flex-start;
+    height: 100px;
     margin: 0 100px;
     width: 300px;
+    padding-top: 20px;
 }
 
 #menu-selection p{
     font-size: 18px;
     font-weight: 700;
+    width: 100px;
+    height: 70px;
+    display: grid;
+    place-items: center;
 }
 
-#menu-selection #menu-deroulant button{
+#menu-selection #menu-deroulant {
+    width: 170px;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#menu-selection #menu-deroulant .btnMenu{
+    display: none;
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -22,8 +35,11 @@
     height: 70px;
     border: none;
     background-color: #901C1C;
-    border-radius: 5px;
     cursor: pointer;
+}
+
+#menu-selection #menu-deroulant .btnMenu:first-child{
+    display: block;
 }
 
 /*Media Section*/

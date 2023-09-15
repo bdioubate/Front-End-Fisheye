@@ -27,7 +27,7 @@ function mediaTemplate(data, name) {
             const img = document.createElement( 'img' );
             img.setAttribute("src", picture)
             img.setAttribute("alt",`${image}`);
-            img.setAttribute("onclick",`lightBoxModal(this.src)`);
+            img.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`);
             figure.appendChild(img);
         }
 
@@ -36,7 +36,7 @@ function mediaTemplate(data, name) {
             const videoPhographer = document.createElement( 'video' );
             videoPhographer.setAttribute("src", videoMedia)
             videoPhographer.setAttribute("alt",`${video}`);
-            videoPhographer.setAttribute("onclick",`lightBoxModal(this.src)`);
+            videoPhographer.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`);
             figure.appendChild(videoPhographer);
         }
 
@@ -97,10 +97,29 @@ function mediaTemplate(data, name) {
         menuDeroulant.setAttribute("id","menu-deroulant")
         menuSelection.appendChild(menuDeroulant)
     
-        //Creation du bouton du menu de deroulant
-        const buttonMenuDeroulant = document.createElement("button"); 
-        buttonMenuDeroulant.textContent = "Popularité";
-        menuDeroulant.appendChild(buttonMenuDeroulant)
+        //Creation du bouton popularité du menu de deroulant
+        const buttonMenuDeroulantPopularite = document.createElement("button"); 
+        //buttonMenuDeroulantPopularite.textContent = "Popularité";
+        buttonMenuDeroulantPopularite.setAttribute("class","btnMenu")
+        buttonMenuDeroulantPopularite.setAttribute("data-value","Popularité")
+        buttonMenuDeroulantPopularite.textContent = buttonMenuDeroulantPopularite.dataset.value
+        menuDeroulant.appendChild(buttonMenuDeroulantPopularite) 
+
+        //Creation du bouton date du menu de deroulant
+        const buttonMenuDeroulantDate = document.createElement("button"); 
+        //buttonMenuDeroulantDate.textContent = "Date";
+        buttonMenuDeroulantDate.setAttribute("class","btnMenu")
+        buttonMenuDeroulantDate.setAttribute("data-value","Date")
+        buttonMenuDeroulantDate.textContent = buttonMenuDeroulantDate.dataset.value
+        menuDeroulant.appendChild(buttonMenuDeroulantDate) 
+
+        //Creation du bouton date du menu de deroulant
+        const buttonMenuDeroulantTitre = document.createElement("button"); 
+        //buttonMenuDeroulantTitre.textContent = "Titre";
+        buttonMenuDeroulantTitre.setAttribute("class","btnMenu")
+        buttonMenuDeroulantTitre.setAttribute("data-value","Titre")
+        buttonMenuDeroulantTitre.textContent = buttonMenuDeroulantTitre.dataset.value
+        menuDeroulant.appendChild(buttonMenuDeroulantTitre) 
     
     }
 

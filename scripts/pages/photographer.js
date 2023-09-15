@@ -55,6 +55,11 @@ async function getMedia(photographer) {
     //Media du photographe
     const allMediaPhotographer = data.media.filter(media => media.photographerId === photographerId);
 
+    //Ordre de popularité
+    allMediaPhotographer.sort(function (a, b) {
+        return b.likes - a.likes;
+     });
+
     return { allMediaPhotographer, photographerName } 
     
 }
@@ -76,6 +81,8 @@ function displayMedia(allMediaPhotographer, objectPhotographer) {
         mediaSection.appendChild(photographerCardDom);
     });
 
+    return { mediaEncart }
+
 }
 
 async function initPhotographer() {
@@ -85,10 +92,21 @@ async function initPhotographer() {
     //console.log(photographer[0].price)
     //Media
     const {allMediaPhotographer} = await getMedia(photographer);
+    console.log(photographer)
+    //const { mediaEncart } = displayMedia(allMediaPhotographer, photographer[0])
+    //Encart
+    //mediaEncart.encartCard(photographer[0].price);
+    //Menu de selection 
+    //mediaEncart.menuSelection();
     displayMedia(allMediaPhotographer, photographer[0])
 
     //Likes
-    btnLikes() 
+    new btnLikes().allBtnLiked()
+
+    //Menu deroulant
+    new menuDeroulant().content(allMediaPhotographer, photographer[0])
+
+     
     
 
 }
