@@ -4,7 +4,7 @@ class menuDeroulant{
         this.allMediaPhotographer = allMediaPhotographer
       }
 
-      getVariable() {
+    getVariable() {
         const menuDeroulant = document.getElementById("menu-deroulant");
         const allBtn = menuDeroulant.getElementsByClassName("btnMenu");
         const btnFirst = allBtn[0];
@@ -32,13 +32,11 @@ class menuDeroulant{
 
     sortMedia(typeSort,allMediaPhotographer, photographer) {
         if(typeSort === "Date") {
-            console.log(typeSort)
             allMediaPhotographer.sort(function (a, b) {
                     return a.date.split("-").join('') - b.date.split("-").join('');
                 });    
         }
         else if(typeSort === "Titre") {
-            console.log(typeSort)
             allMediaPhotographer.sort(function (a, b) {
             if (a.title < b.title) {
               return -1;
@@ -49,18 +47,26 @@ class menuDeroulant{
             return 0;
           });
         }else {
-            console.log(typeSort)
             allMediaPhotographer.sort(function (a, b) {
                 return b.likes - a.likes;
             });
         }
-        const encart = document.getElementById("encart")
-        encart.remove()
+        //const encart = document.getElementById("encart")
+        //encart.remove()
         const mediaSection = document.getElementById("media-section")
         mediaSection.remove()
+
+        //const allMediaSection = document.querySelectorAll("#media-section article")
+        //console.log(allMediaSection)
+        //for(let i=0;i<allMediaSection.length;i++) {
+        //    allMediaSection[i].remove()
+        //}
+
+        //const menu = document.querySelectorAll("#menu-selection")
+        //const menu = document.getElementById("menu-selection")
+        //menu.remove()
         displayMedia(allMediaPhotographer, photographer)
-        const menu = document.querySelectorAll("#menu-selection")
-        menu[1].remove()
+        new lightbox().lightBoxModal()
     }
 
     changeOrderBtn(allMediaPhotographer, photographer) {

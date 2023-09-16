@@ -1,14 +1,39 @@
-function mediaTemplate(data, name) {
-    console.log(data)
-    const { id, photographerId, title, image, video, likes, date, price } = data;
+class mediaTemplate{
+    constructor(data, name) {
+        this.data = data;
+        this.name = name
 
-    //Chemin de l'image du media
-    const picture = `assets/media/${name}/${image}`;
+    }
 
-    //Chemin de le video du media
-    const videoMedia = `assets/media/${name}/${video}`; 
+    //const { id, photographerId, title, image, video, likes, date, price } ;
 
-    function getPhotographerMediaDom() {
+    /*getVariableData() {
+        const { id, photographerId, title, image, video, likes, date, price } = this.data
+
+        return {id, photographerId, title, image, video, likes, date, price }
+    }*/
+
+    getVariable() {
+        const name = this.name
+
+        const { id, photographerId, title, image, video, likes, date, price } = this.data
+        
+        //Chemin de l'image du media
+        const picture = `assets/media/${name}/${image}`;
+
+        //Chemin de le video du media
+        const videoMedia = `assets/media/${name}/${video}`; 
+
+        return { picture, videoMedia }
+    }
+
+    
+
+    getPhotographerMediaDom() {
+
+        const { id, photographerId, title, image, video, likes, date, price } = this.data
+
+        const { picture, videoMedia } = this.getVariable()
 
         //Creation de la balise article photographer
         const article = document.createElement( 'article' );
@@ -27,7 +52,7 @@ function mediaTemplate(data, name) {
             const img = document.createElement( 'img' );
             img.setAttribute("src", picture)
             img.setAttribute("alt",`${image}`);
-            img.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`);
+            //img.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`);
             figure.appendChild(img);
         }
 
@@ -36,7 +61,7 @@ function mediaTemplate(data, name) {
             const videoPhographer = document.createElement( 'video' );
             videoPhographer.setAttribute("src", videoMedia)
             videoPhographer.setAttribute("alt",`${video}`);
-            videoPhographer.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`);
+            //videoPhographer.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`);
             figure.appendChild(videoPhographer);
         }
 
@@ -68,7 +93,9 @@ function mediaTemplate(data, name) {
         return (article);
     }
 
-    function mediaSection() {
+    mediaSection() {
+
+        const { id, photographerId, title, image, video, likes, date, price } = this.data
     
         const main = document.querySelector("main");
     
@@ -78,7 +105,10 @@ function mediaTemplate(data, name) {
         main.appendChild(mediaSection)
     }
     
-    function menuSelection() {
+    menuSelection() {
+
+        const { id, photographerId, title, image, video, likes, date, price } = this.data
+
         //Factory media
         const main = document.querySelector("main");
     
@@ -123,7 +153,10 @@ function mediaTemplate(data, name) {
     
     }
 
-    function encartCard(pricePhotographer) {
+    encartCard(pricePhotographer) {
+
+        const { id, photographerId, title, image, video, likes, date, price } = this.data
+
         const main = document.querySelector("main");
     
         //div encart
@@ -154,5 +187,5 @@ function mediaTemplate(data, name) {
 
     }
 
-    return { id, photographerId, title, image, video, likes, date, price, getPhotographerMediaDom, mediaSection, menuSelection, encartCard }
+    //return { id, photographerId, title, image, video, likes, date, price, getPhotographerMediaDom, mediaSection, menuSelection, encartCard }
 }

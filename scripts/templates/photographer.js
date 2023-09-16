@@ -1,10 +1,27 @@
-function photographerTemplate(data) { 
-    const { name, id, city, country, tagline, price, portrait } = data;
+class photographerTemplate { 
 
-    //Chemin de l'image du photographe
-    const picture = `assets/photographers/${portrait}`;
+    constructor(data) {
+        this.data = data
 
-    function getUserCardDOM() {
+    }
+
+    /*getVariableData() {
+        const { name, id, city, country, tagline, price, portrait } = this.data
+
+        return {name, id, city, country, tagline, price, portrait }
+    }*/
+
+    getVariable() {
+        const { name, id, city, country, tagline, price, portrait } = this.data
+        //Chemin de l'image du photographe
+        const picture = `assets/photographers/${portrait}`;
+
+        return { picture}
+    }
+
+    getUserCardDOM() {
+        const {picture} = this.getVariable()
+        const { name, id, city, country, tagline, price, portrait } = this.data
         //Creation de la balise article photographer
         const article = document.createElement( 'article' );
         article.setAttribute('class','photographer')
@@ -15,7 +32,7 @@ function photographerTemplate(data) {
 
         //Balise a
         const link = document.createElement( 'a' );
-        link.addEventListener("click", navUserCardDOM(link));
+        link.addEventListener("click", this.navUserCardDOM(link));
         figure.appendChild(link);
 
         //Images 
@@ -59,12 +76,14 @@ function photographerTemplate(data) {
         return (article);
     }
 
-    function navUserCardDOM(link) {
+    navUserCardDOM(link) {
+        const { name, id, city, country, tagline, price, portrait } = this.data
         link.href = "./photographer.html?id="+id
     }
 
-    function getPhotographerCardDom() {
-
+    getPhotographerCardDom() {
+        const {picture} = this.getVariable()
+        const { name, id, city, country, tagline, price, portrait } = this.data
         //Div photographer-header
         const photographerHeader = document.querySelector(".photograph-header");
 
@@ -111,5 +130,5 @@ function photographerTemplate(data) {
     }
 
 
-    return { name, id, city, country, tagline, price, picture, getUserCardDOM, navUserCardDOM, getPhotographerCardDom }
+    //return { name, id, city, country, tagline, price, picture, getUserCardDOM, navUserCardDOM, getPhotographerCardDom }
 }

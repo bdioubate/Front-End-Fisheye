@@ -1,67 +1,86 @@
 class lightbox{
 
-   /*constructor(_src) {
-      this._src = _src
-   }*/
-
    getVariable() {
       //modal lightBox
       const modal = document.getElementById('lightbox_modal')
 
       const mainBody = document.getElementById('main')
 
-      //global _src
-      //let urlActuelle
-      //let typeUrlActuelle
-
       //Div de l'image
       const divImg = document.getElementById('imgLightbox')
 
-      return { modal, mainBody, divImg}
+      //
+      //const tabMedia = document.querySelectorAll("#media-section")
+
+      const tabMedia = document.getElementById("media-section")
+
+      //Bouton fermeture modal
+      const closeModal = document.getElementById('closeLightBox')
+
+      return { modal, mainBody, divImg, tabMedia, closeModal}
 
    }
 
-   initModal(_src) {
-      this.displayLightbox(_src)
-   }
+   lightBoxModal() {
+      const { modal, mainBody, typeUrlActuelle, divImg, tabMedia} = this.getVariable()
 
-   lightBoxModal(_src) {
-      console
-      const { modal, mainBody, typeUrlActuelle, divImg} = this.getVariable()
+      let j
 
-      //global _src
-      let urlActuelle
+      for (let i = 0; i < tabMedia.children.length; i++) {
+         //Click article
+         tabMedia.children[i].addEventListener("click", () => {
 
-      modal.style.display = "grid";
+            modal.style.display = "grid";
 
-      mainBody.style.display = "none";
+            mainBody.style.display = "none";
 
-      urlActuelle = _src
+            this.displayLightbox(i)
 
-      this.initModal(urlActuelle)
+            j = i
+
+         });
+      }
 
       //Next media
       document.getElementById("btnRight").addEventListener("click", () => {
-         this.nextMedia(urlActuelle);
+         if(j>=0){
+         j++
+         if(j === tabMedia.children.length){
+            j = 0
+         }
+         this.nextMedia(j);
+      }
       });
 
-      //Previous media
+      //Prev media
       document.getElementById("btnLeft").addEventListener("click", () => {
-         this.prevMedia(urlActuelle);
+         if(j>=0){
+         j--
+         if(j < 0){
+            j = tabMedia.children.length - 1
+         }
+         this.prevMedia(j);
+      }
       });
+      
 
    }
 
    lightBoxCloseModal() {
-      const { modal, mainBody, urlActuelle, typeUrlActuelle, divImg} = this.getVariable()
+      const { modal, mainBody, closeModal} = this.getVariable()
 
-      modal.style.display = "none";
+      //Boutton close modal
+      closeModal.addEventListener("click", () => {
+         modal.style.display = "none";
 
-      mainBody.style.display = "block";
+         mainBody.style.display = "block";
+      });
    }
 
-   displayLightbox(_src) {
-      const { modal, mainBody, urlActuelle, divImg} = this.getVariable()
+   displayLightbox(i) {
+      const { modal, mainBody, urlActuelle, divImg, tabMedia} = this.getVariable()
+
+      const _src = tabMedia.children[i].children[0].children[0].getAttribute("src") 
 
       //global _src
       let typeUrlActuelle
@@ -90,135 +109,11 @@ class lightbox{
       }
    }
 
-   async nextMedia(_src) {
-      console.log(_src)
-      const { modal, mainBody, divImg} = this.getVariable()
-
-      //global _src
-      let typeUrlActuelle
-      let urlActuelle
-
-      //Obtenir le nom du fichier
-      let parts = _src.split('/')
-      let nameImg = parts[parts.length - 1]
-      parts.pop()
-      //Obtenir le type
-      let partsType = _src.split('.')
-      typeUrlActuelle = partsType[partsType.length - 1]
-
-      // Tab des medias du photographe
-      const {photographer} =  await getPhotographer()
-      const {allMediaPhotographer} = await getMedia(photographer)
-
-      //Trouve l'index du photographe grace a findIndex
-      let indexPhotographer = allMediaPhotographer.findIndex(photographer => (photographer.image || photographer.video) === nameImg);
-
-      //nom du prochain fichier
-      let nameNextMedia
-
-      if((indexPhotographer+1) === allMediaPhotographer.length) {
-         indexPhotographer = -1
-      }
-
-      if(allMediaPhotographer[indexPhotographer+1].image) {
-         nameNextMedia = allMediaPhotographer[indexPhotographer+1].image
-      }
-      else {
-         nameNextMedia = allMediaPhotographer[indexPhotographer+1].video
-      }
-
-      parts.push(nameNextMedia)
-      urlActuelle = parts.join('/')
-
-      console.log(urlActuelle)
-
-      this.initModal(urlActuelle)
+   nextMedia(debut) {
+      this.displayLightbox(debut)
    }
 
-   async prevMedia(_src) {
-      const { modal, mainBody, divImg} = this.getVariable()
-
-      //global _src
-      let typeUrlActuelle
-      let urlActuelle
-
-      //Obtenir le nom du fichier
-      let parts = _src.split('/')
-      let nameImg = parts[parts.length - 1]
-      parts.pop()
-      //Obtenir le type
-      let partsType = _src.split('.')
-      typeUrlActuelle = partsType[partsType.length - 1]
-
-      // Tab des medias du photographe
-      const {allMediaPhotographer} = await getMediaLightbox()
-
-      //Trouve l'index du photographe grace a findIndex
-      let indexPhotographer = allMediaPhotographer.findIndex(photographer => (photographer.image || photographer.video) === nameImg);
-
-      //nom du prochain fichier
-      let nameNextMedia
-
-      if((indexPhotographer-1) === -1) {
-         indexPhotographer = allMediaPhotographer.length
-      }
-
-      if(allMediaPhotographer[indexPhotographer-1].image) {
-         nameNextMedia = allMediaPhotographer[indexPhotographer-1].image
-      }
-      else {
-         nameNextMedia = allMediaPhotographer[indexPhotographer-1].video
-      }
-
-      parts.push(nameNextMedia)
-      urlActuelle = parts.join('/')
-
-      this.initModal(urlActuelle)
-   }
-
-
-
-   async getMediaLightbox() {
-
-      const {photographer} =  await getPhotographer()
-
-      const {allMediaPhotographer} = await getMedia(photographer)
-
-      return {allMediaPhotographer}
+   prevMedia(debut) {
+      this.displayLightbox(debut)
    }
 }
-
-
-
-//Tab des medias
-/*const {photographer} =  await getPhotographer()
-
-const {allMediaPhotographer} = await getMedia(photographer)*/
-/*
-const tabMedia = document.querySelectorAll("#media-section article")
-
-const tab = []
-
-for (let i of tabMedia) {
-   console.log(_src)
-   console.log(i.children[0].children[0].getAttribute("src")); // affiche 3, 5, 7 dans la console
-   tab.push(i.children[0].children[0].getAttribute("src"))
- }
-*/
-
-
-//Tab des medias
-/*const {photographer} =  await getPhotographer()
-
-const {allMediaPhotographer} = await getMedia(photographer)*/
-/*
-const tabMedia = document.querySelectorAll("#media-section article")
-
-const tab = []
-
-for (let i of tabMedia) {
-   console.log(_src)
-   console.log(i.children[0].children[0].getAttribute("src")); // affiche 3, 5, 7 dans la console
-   tab.push(i.children[0].children[0].getAttribute("src"))
- }
-*/

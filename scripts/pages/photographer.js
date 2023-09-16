@@ -1,3 +1,4 @@
+//import lightbox2 from "../utils/Lightbox2";
 //Mettre le code JavaScript lié à la page photographer.html
 //Recuperation des data 
 async function getData() {
@@ -34,8 +35,7 @@ async function getPhotographer() {
 async function displayPhotograher(photographer) {
     //Factory photographer
     const main = document.querySelector("main"); 
-
-        const photographerModel = photographerTemplate(photographer[0]);
+        const photographerModel = new photographerTemplate(photographer[0])
         const photographerCardDom = photographerModel.getPhotographerCardDom();
         main.appendChild(photographerCardDom);
 
@@ -64,22 +64,29 @@ async function getMedia(photographer) {
     
 }
 
-function displayMedia(allMediaPhotographer, objectPhotographer) {
-    const mediaEncart  = mediaTemplate(allMediaPhotographer[0],objectPhotographer.name)
+function displayMediaPlus(allMediaPhotographer, objectPhotographer) {
+    const mediaEncart  = new mediaTemplate(allMediaPhotographer[0],objectPhotographer.name)
     //Encart
     mediaEncart.encartCard(objectPhotographer.price);
     //Menu de selection 
     mediaEncart.menuSelection();
+}
+
+function displayMedia(allMediaPhotographer, objectPhotographer) {
+    const mediaEncart  = new mediaTemplate(allMediaPhotographer[0],objectPhotographer.name)
     //Media section
     mediaEncart.mediaSection();
     const mediaSection = document.querySelector("#media-section")
 
     allMediaPhotographer.forEach((media) => {
-        const mediaModel = mediaTemplate(media, objectPhotographer.name);
+        const mediaModel = new mediaTemplate(media, objectPhotographer.name); 
 
         const photographerCardDom = mediaModel.getPhotographerMediaDom();
         mediaSection.appendChild(photographerCardDom);
     });
+
+    //Menu deroulant
+    //new menuDeroulant().content(allMediaPhotographer, objectPhotographer)
 
     return { mediaEncart }
 
@@ -92,12 +99,12 @@ async function initPhotographer() {
     //console.log(photographer[0].price)
     //Media
     const {allMediaPhotographer} = await getMedia(photographer);
-    console.log(photographer)
     //const { mediaEncart } = displayMedia(allMediaPhotographer, photographer[0])
     //Encart
     //mediaEncart.encartCard(photographer[0].price);
     //Menu de selection 
     //mediaEncart.menuSelection();
+    displayMediaPlus(allMediaPhotographer, photographer[0])
     displayMedia(allMediaPhotographer, photographer[0])
 
     //Likes
@@ -105,6 +112,10 @@ async function initPhotographer() {
 
     //Menu deroulant
     new menuDeroulant().content(allMediaPhotographer, photographer[0])
+
+    //Lightbox
+    new lightbox().lightBoxModal()
+    new lightbox().lightBoxCloseModal()
 
      
     
