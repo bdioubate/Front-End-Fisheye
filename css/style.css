@@ -27,15 +27,21 @@ h1 {
     margin-right: 100px;
 }
 
-.logo {
+#logo {
     height: 50px;
     margin-left: 100px;
+    cursor: pointer;
+}
+
+#logo img {
+    height: 100%;
 }
 
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
+    /*column-gap: 5px;*/
+    row-gap: 55px;
     margin: 100px 0;
 }
 
@@ -45,6 +51,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-align: center;
 }
 
 .photographer_section article h2 {
@@ -55,4 +62,30 @@ h1 {
 .photographer_section article img {
     height: 200px;
     width: 200px;
+}
+
+/* Tablette */
+@media (max-width: 1024px) {
+    .photographer_section {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Mobile */
+@media (max-width: 747px) {
+    header {
+        margin-top: 20px;
+        flex-direction: column;
+
+    }
+
+    h1, #logo{
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    .photographer_section {
+        grid-template-columns: 1fr;
+    }
 }

@@ -18,8 +18,10 @@
     align-items: center;
     min-height: calc(100% - 120px);
     height: calc(100% - 120px);
+    max-height: 600px;
     min-width: calc(100% - 200px);
     width: calc(100% - 200px);
+    max-width: 600px;
 }
 
 #lightbox_modal #contentLightbox button#closeLightBox{
@@ -40,7 +42,12 @@
     fill: #901C1C;
 }
 
+/*#lightbox_modal #contentLightbox #imgLightbox{
+    position: relative;
+}*/
+
 #lightbox_modal #contentLightbox #imgLightbox{
+    position: relative;
     border-radius: 5px;
     /*width: 1000px;*/
     width: 100%;
@@ -56,4 +63,31 @@
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
+}
+
+#imgLightbox h2{ 
+    position: absolute;
+    color: #901C1C;
+    /*bottom: -45px;
+    left: 295px;*/
+    bottom: -40px;
+    left: 0px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Tablette */
+@media (max-width: 747px) {
+    #lightbox_modal #contentLightbox button#closeLightBox{
+        right: -50px;
+    }
+    #lightbox_modal #contentLightbox img, #lightbox_modal #contentLightbox video {
+        height: 95%;
+    }
+    /*#closeLightBox svg{
+        width: 16px;
+        height: 16px;
+    }*/
 }

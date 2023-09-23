@@ -67,19 +67,31 @@ async function getMedia(photographer) {
 function displayMediaPlus(allMediaPhotographer, objectPhotographer) {
     const mediaEncart  = new mediaTemplate(allMediaPhotographer[0],objectPhotographer.name)
     //Encart
-    mediaEncart.encartCard(objectPhotographer.price);
+    //mediaEncart.encartCard(objectPhotographer.price);
     //Menu de selection 
     mediaEncart.menuSelection();
 }
 
 function displayMedia(allMediaPhotographer, objectPhotographer) {
     const mediaEncart  = new mediaTemplate(allMediaPhotographer[0],objectPhotographer.name)
+    //Menu de selection 
+    //mediaEncart.menuSelection();
+
     //Media section
     mediaEncart.mediaSection();
     const mediaSection = document.querySelector("#media-section")
 
+    //Encart
+    let nbLikes = 0
+    for(let i=0;i<allMediaPhotographer.length;i++) {
+        nbLikes += allMediaPhotographer[i].likes
+    }
+    mediaEncart.encartCard(nbLikes, objectPhotographer.price);
+    
+
     allMediaPhotographer.forEach((media) => {
         const mediaModel = new mediaTemplate(media, objectPhotographer.name); 
+
 
         const photographerCardDom = mediaModel.getPhotographerMediaDom();
         mediaSection.appendChild(photographerCardDom);
@@ -96,7 +108,6 @@ async function initPhotographer() {
     // Récupère les datas des photographes
     const { photographer } = await getPhotographer();
     displayPhotograher(photographer);
-    //console.log(photographer[0].price)
     //Media
     const {allMediaPhotographer} = await getMedia(photographer);
     //const { mediaEncart } = displayMedia(allMediaPhotographer, photographer[0])
@@ -107,6 +118,8 @@ async function initPhotographer() {
     displayMediaPlus(allMediaPhotographer, photographer[0])
     displayMedia(allMediaPhotographer, photographer[0])
 
+    //Contact
+
     //Likes
     new btnLikes().allBtnLiked()
 
@@ -116,6 +129,16 @@ async function initPhotographer() {
     //Lightbox
     new lightbox().lightBoxModal()
     new lightbox().lightBoxCloseModal()
+
+    // Gestion de l'événement submit sur le formulaire. 
+    let form = document.querySelector("form")
+    form.addEventListener("submit", (event) => {
+        event.preventDefault()
+        if(!new contact().validate()) {
+        return
+        }
+        new contact().modifierForm()
+    })
 
      
     

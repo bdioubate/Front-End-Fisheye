@@ -38,7 +38,7 @@ class photographerTemplate {
         //Images 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
-        img.setAttribute("alt",`photo de ${name}`);
+        img.setAttribute("alt","");
         link.appendChild(img);
 
         //Balise figcaption
@@ -114,6 +114,10 @@ class photographerTemplate {
         pTagline.textContent = tagline;
         div.appendChild(pTagline);
 
+        //id du bouton contact
+        const idBtnContact = document.querySelector(".photograph-header button")
+        idBtnContact.setAttribute("id",name)
+
         //Creation de la balise div user
         const user = document.createElement( 'div' );
         user.setAttribute('id','user')
@@ -122,7 +126,7 @@ class photographerTemplate {
         //Images du photographe dans la div #user
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
-        img.setAttribute("alt",`photo de ${name}`);
+        img.setAttribute("alt","");
         user.appendChild(img);
 
 

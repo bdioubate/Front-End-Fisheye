@@ -5,7 +5,7 @@ class mediaTemplate{
 
     }
 
-    //const { id, photographerId, title, image, video, likes, date, price } ;
+    //const { id, photographerId, title, image, video, likes, date, price } ; 
 
     /*getVariableData() {
         const { id, photographerId, title, image, video, likes, date, price } = this.data
@@ -45,14 +45,15 @@ class mediaTemplate{
 
         /*//Balise a
         const link = document.createElement( 'a' );
-        figure.appendChild(link); cursor: pointer; displayModal()*/
+        figure.appendChild(link); cursor: pointer; displayModal()*/ 
 
         if(image){
             //Images 
             const img = document.createElement( 'img' );
             img.setAttribute("src", picture)
-            img.setAttribute("alt",`${image}`);
-            //img.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`);
+            //Nom de l'image
+            const nomImage = image.split('.')[0].replaceAll('_'," ")
+            img.ariaLabel = `${nomImage}, vue rapprochée`
             figure.appendChild(img);
         }
 
@@ -60,7 +61,9 @@ class mediaTemplate{
             //Video 
             const videoPhographer = document.createElement( 'video' );
             videoPhographer.setAttribute("src", videoMedia)
-            videoPhographer.setAttribute("alt",`${video}`);
+            //Nom de le video
+            const nomVideo = video.split('.')[0].replaceAll('_'," ")
+            videoPhographer.ariaLabel = `${nomVideo}, vue rapprochée`
             //videoPhographer.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`);
             figure.appendChild(videoPhographer);
         }
@@ -88,6 +91,7 @@ class mediaTemplate{
         const iconLikesImg = document.createElement("i")
         iconLikesImg.setAttribute("class","fa-regular fa-heart fa-xl btnLikes")
         iconLikesImg.setAttribute("data-liked",false)
+        iconLikesImg.ariaLabel = "likes"
         likesSection.appendChild(iconLikesImg)
 
         return (article);
@@ -125,6 +129,7 @@ class mediaTemplate{
         //Creation du menu deroulant
         const menuDeroulant = document.createElement("div"); 
         menuDeroulant.setAttribute("id","menu-deroulant")
+        menuDeroulant.ariaLabel = "Trier par"
         menuSelection.appendChild(menuDeroulant)
     
         //Creation du bouton popularité du menu de deroulant
@@ -133,7 +138,14 @@ class mediaTemplate{
         buttonMenuDeroulantPopularite.setAttribute("class","btnMenu")
         buttonMenuDeroulantPopularite.setAttribute("data-value","Popularité")
         buttonMenuDeroulantPopularite.textContent = buttonMenuDeroulantPopularite.dataset.value
+
         menuDeroulant.appendChild(buttonMenuDeroulantPopularite) 
+
+        //Icone arrow pour le premeier bouton du menu
+        const firstButtonMenuDeroulant = document.querySelectorAll(".btnMenu")[0]; 
+        const iconeArrow = document.createElement("i")
+        iconeArrow.setAttribute("class","fa-solid fa-angle-down")
+        firstButtonMenuDeroulant.appendChild(iconeArrow)
 
         //Creation du bouton date du menu de deroulant
         const buttonMenuDeroulantDate = document.createElement("button"); 
@@ -150,12 +162,11 @@ class mediaTemplate{
         buttonMenuDeroulantTitre.setAttribute("data-value","Titre")
         buttonMenuDeroulantTitre.textContent = buttonMenuDeroulantTitre.dataset.value
         menuDeroulant.appendChild(buttonMenuDeroulantTitre) 
-    
     }
 
-    encartCard(pricePhotographer) {
+    encartCard(nbLikes, pricePhotographer) {
 
-        const { id, photographerId, title, image, video, likes, date, price } = this.data
+        //const { id, photographerId, title, image, video, likes, date, price } = this.data
 
         const main = document.querySelector("main");
     
@@ -171,7 +182,7 @@ class mediaTemplate{
     
         //Nombre de likes
         const countLikes = document.createElement("p");
-        countLikes.textContent = likes
+        countLikes.textContent = nbLikes
         likesSection.appendChild(countLikes)
 
         //Icone likes
@@ -184,7 +195,6 @@ class mediaTemplate{
         //pPrice.setAttribute('id','price')
         pPrice.textContent = `${pricePhotographer}€/jour`;
         encart.appendChild(pPrice)
-
     }
 
     //return { id, photographerId, title, image, video, likes, date, price, getPhotographerMediaDom, mediaSection, menuSelection, encartCard }
