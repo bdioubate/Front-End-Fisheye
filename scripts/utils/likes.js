@@ -1,4 +1,4 @@
-class btnLikes{
+export default class btnLikes{
 
     getVariable() {
         const AllbtnLikes = document.getElementsByClassName("btnLikes")
@@ -18,7 +18,7 @@ class btnLikes{
                 AllbtnLikes[index].previousSibling.innerHTML++
 
                 //Compteur de l'encart 
-                document.querySelector("#likes p").innerHTML++;
+                document.querySelector("#likes p").innerHTML++
             }else {
                 AllbtnLikes[index].setAttribute("data-liked",false)
                 AllbtnLikes[index].setAttribute("class","fa-regular fa-heart fa-xl btnLikes") 
@@ -27,7 +27,7 @@ class btnLikes{
                 AllbtnLikes[index].previousSibling.innerHTML--
 
                 //Compteur de l'encart 
-                document.querySelector("#likes p").innerHTML--;
+                document.querySelector("#likes p").innerHTML--
             } 
         })
     }
@@ -36,7 +36,7 @@ class btnLikes{
         const { AllbtnLikes } = this.getVariable()
 
         for(let i = 0; i < AllbtnLikes.length; i++) {
-        this.liked(i)    
+            this.liked(i)    
         }
     }   
 }

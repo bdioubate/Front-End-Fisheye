@@ -1,165 +1,161 @@
-class lightbox{
+export default class lightbox{
+   
+    getVariable() {
+        //modal lightBox
+        const modal = document.getElementById("lightbox_modal")
 
-   getVariable() {
-      //modal lightBox
-      const modal = document.getElementById('lightbox_modal')
+        const mainBody = document.getElementById("main")
 
-      const mainBody = document.getElementById('main')
+        //Div de l'image
+        const divImg = document.getElementById("imgLightbox")
 
-      //Div de l'image
-      const divImg = document.getElementById('imgLightbox')
+        const tabMedia = document.getElementById("media-section")
 
-      //
-      //const tabMedia = document.querySelectorAll("#media-section")
+        //Bouton fermeture modal
+        const closeModal = document.getElementById("closeLightBox")
 
-      const tabMedia = document.getElementById("media-section")
+        //Nom de l'image ou de la video
+        const nomImg = document.createElement("h2")
 
-      //Bouton fermeture modal
-      const closeModal = document.getElementById('closeLightBox')
+        return { modal, mainBody, divImg, tabMedia, closeModal, nomImg}
 
-      //Nom de l'image ou de la video
-      //const nomImg = document.querySelector('h2#nomImgLightbox')
-      const nomImg = document.createElement('h2')
+    }
 
-      return { modal, mainBody, divImg, tabMedia, closeModal, nomImg}
+    lightBoxModal() {
+        const { modal, mainBody, tabMedia} = this.getVariable()
 
-   }
+        let j
 
-   lightBoxModal() {
-      const { modal, mainBody, typeUrlActuelle, divImg, tabMedia} = this.getVariable()
+        for (let i = 0;i < tabMedia.children.length;i++) {
+            //Click article
+            tabMedia.children[i].children[0].children[0].addEventListener("click", () => {
 
-      let j
+                modal.style.display = "grid"
 
-      for (let i = 0; i < tabMedia.children.length; i++) {
-         //Click article
-         tabMedia.children[i].children[0].children[0].addEventListener("click", () => {
+                mainBody.style.display = "none"
 
-            modal.style.display = "grid";
+                this.displayLightbox(i)
 
-            mainBody.style.display = "none";
+                j = i
 
-            this.displayLightbox(i)
+            })
+        }
 
-            j = i
-
-         });
-      }
-
-      //Next media
-      document.getElementById("btnRight").addEventListener("click", () => {
-         if(j>=0){
-         j++
-         if(j === tabMedia.children.length){
-            j = 0
-         }
-         this.nextMedia(j);
-      }
-      });
-
-      //Prev media
-      document.getElementById("btnLeft").addEventListener("click", () => {
-         if(j>=0){
-         j--
-         if(j < 0){
-            j = tabMedia.children.length - 1
-         }
-         this.prevMedia(j);
-         }
-      });
-
-      //Defilement avec le clavier
-      document.onkeydown = (e) => {
-         //Next media
-         if (e.key === "ArrowRight") {
-            document.getElementById("btnRight").focus()
+        //Next media
+        document.getElementById("btnRight").addEventListener("click", () => {
             if(j>=0){
-               j++
-               if(j === tabMedia.children.length){
-                  j = 0
-               }
-               this.nextMedia(j);
+                j++
+                if(j === tabMedia.children.length){
+                    j = 0
+                }
+                this.nextMedia(j)
             }
-         }
-         //Prev media
-         else if (e.key === "ArrowLeft") {
-            document.getElementById("btnLeft").focus()
+        })
+
+        //Prev media
+        document.getElementById("btnLeft").addEventListener("click", () => {
             if(j>=0){
-               j--
-               if(j < 0){
-                  j = tabMedia.children.length - 1
-               }
-               this.prevMedia(j);
-               }
-         }
-         //Focus sur bouton fermer
-         else if (e.key === "ArrowUp") {
-            document.getElementById("closeLightBox").focus()
-         }
-       };
-      
+                j--
+                if(j < 0){
+                    j = tabMedia.children.length - 1
+                }
+                this.prevMedia(j)
+            }
+        })
 
-   }
+        //Defilement avec le clavier
+        document.onkeydown = (e) => {
+            //Next media
+            if (e.key === "ArrowRight") {
+                document.getElementById("btnRight").focus()
+                if(j>=0){
+                    j++
+                    if(j === tabMedia.children.length){
+                        j = 0
+                    }
+                    this.nextMedia(j)
+                }
+            }
+            //Prev media
+            else if (e.key === "ArrowLeft") {
+                document.getElementById("btnLeft").focus()
+                if(j>=0){
+                    j--
+                    if(j < 0){
+                        j = tabMedia.children.length - 1
+                    }
+                    this.prevMedia(j)
+                }
+            }
+            //Focus sur bouton fermer
+            else if (e.key === "ArrowUp") {
+                document.getElementById("closeLightBox").focus()
+            }
+        }
 
-   lightBoxCloseModal() {
-      const { modal, mainBody, closeModal} = this.getVariable()
 
-      //Boutton close modal
-      closeModal.addEventListener("click", () => {
-         modal.style.display = "none";
+    }
 
-         mainBody.style.display = "block";
-      });
-   }
+    lightBoxCloseModal() {
+        const { modal, mainBody, closeModal} = this.getVariable()
 
-   displayLightbox(i) {
-      const { modal, mainBody, urlActuelle, divImg, tabMedia, nomImg} = this.getVariable()
+        //Boutton close modal
+        closeModal.addEventListener("click", () => {
+            modal.style.display = "none"
 
-      const _src = tabMedia.children[i].children[0].children[0].getAttribute("src") 
+            mainBody.style.display = "block"
+        })
+    }
 
-      //global _src
-      let typeUrlActuelle
+    displayLightbox(i) {
+        const { divImg, tabMedia, nomImg} = this.getVariable()
 
-      //Recuperation du type de la source jpg ou mp4
-      let parts = _src.split('.')
-      typeUrlActuelle = parts[parts.length - 1]
+        const _src = tabMedia.children[i].children[0].children[0].getAttribute("src") 
 
-      //Recuperation du nom de l'image ou la video
-      let partSrc = parts[0].split('/')
-      let nomMedia = partSrc[partSrc.length - 1].replaceAll('_'," ")
+        //global _src
+        let typeUrlActuelle
 
-      if (divImg.hasChildNodes()) {
-         divImg.removeChild(divImg.firstElementChild);
-         divImg.removeChild(divImg.lastElementChild);
-      }
-      
-      if(typeUrlActuelle === "jpg") {
-         //Images 
-         const img = document.createElement( 'img' );
-         img.setAttribute("src", _src)   
-         img.setAttribute("alt",nomMedia)
-         divImg.appendChild(img);
-      }
+        //Recuperation du type de la source jpg ou mp4
+        let parts = _src.split(".")
+        typeUrlActuelle = parts[parts.length - 1]
 
-      if(typeUrlActuelle === "mp4") {
-         //Images 
-         const video = document.createElement( 'video' );
-         video.setAttribute("src", _src)   
-         video.setAttribute("autoplay","")   
-         video.setAttribute("loop","") 
-         video.setAttribute("alt",nomMedia)
-         divImg.appendChild(video);
-      }
+        //Recuperation du nom de l'image ou la video
+        let partSrc = parts[0].split("/")
+        let nomMedia = partSrc[partSrc.length - 1].replaceAll("_"," ")
 
-      nomImg.textContent = nomMedia
-      divImg.appendChild(nomImg)
+        if (divImg.hasChildNodes()) {
+            divImg.removeChild(divImg.firstElementChild)
+            divImg.removeChild(divImg.lastElementChild)
+        }
+        
+        if(typeUrlActuelle === "jpg") {
+            //Images 
+            const img = document.createElement( "img" )
+            img.setAttribute("src", _src)   
+            img.setAttribute("alt",nomMedia)
+            divImg.appendChild(img)
+        }
 
-   }
+        if(typeUrlActuelle === "mp4") {
+            //Images 
+            const video = document.createElement( "video" )
+            video.setAttribute("src", _src)   
+            video.setAttribute("autoplay","")   
+            video.setAttribute("loop","") 
+            video.setAttribute("alt",nomMedia)
+            divImg.appendChild(video)
+        }
 
-   nextMedia(debut) {
-      this.displayLightbox(debut)
-   }
+        nomImg.textContent = nomMedia
+        divImg.appendChild(nomImg)
 
-   prevMedia(debut) {
-      this.displayLightbox(debut)
-   }
+    }
+
+    nextMedia(debut) {
+        this.displayLightbox(debut)
+    }
+
+    prevMedia(debut) {
+        this.displayLightbox(debut)
+    }
 }
