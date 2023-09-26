@@ -1,11 +1,14 @@
+//Class pour la gestion des likes
 export default class btnLikes{
 
+    //Recuperation des variables globales 
     getVariable() {
         const AllbtnLikes = document.getElementsByClassName("btnLikes")
 
         return {AllbtnLikes}
     }
 
+    //Fonction pour ajouter ou supprimer un like au click d'un bouton like
     liked(index) {
         const { AllbtnLikes } = this.getVariable()
 
@@ -32,6 +35,7 @@ export default class btnLikes{
         })
     }
 
+    //Fonction pour compter le nombre total de likes des medias  
     allBtnLiked() {
         const { AllbtnLikes } = this.getVariable()
 

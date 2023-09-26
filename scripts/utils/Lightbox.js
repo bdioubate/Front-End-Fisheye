@@ -1,6 +1,8 @@
+//Class pour l'organisation de la modal lightbox
 export default class lightbox{
    
-    getVariable() {
+    //Recuperation des variables globales 
+    getVariable() { 
         //modal lightBox
         const modal = document.getElementById("lightbox_modal")
 
@@ -21,6 +23,7 @@ export default class lightbox{
 
     }
 
+    //Fonction de la gestion du defilement des medias de la lightbox 
     lightBoxModal() {
         const { modal, mainBody, tabMedia} = this.getVariable()
 
@@ -96,6 +99,7 @@ export default class lightbox{
 
     }
 
+    //Fonction pour fermer la modal
     lightBoxCloseModal() {
         const { modal, mainBody, closeModal} = this.getVariable()
 
@@ -107,10 +111,12 @@ export default class lightbox{
         })
     }
 
+    //Fonction pour l'affichage de l'image ou la video dans la modal
     displayLightbox(i) {
         const { divImg, tabMedia, nomImg} = this.getVariable()
 
         const _src = tabMedia.children[i].children[0].children[0].getAttribute("src") 
+        const title = tabMedia.children[i].children[0].children[1].children[0].textContent 
 
         //global _src
         let typeUrlActuelle
@@ -121,7 +127,6 @@ export default class lightbox{
 
         //Recuperation du nom de l'image ou la video
         let partSrc = parts[0].split("/")
-        let nomMedia = partSrc[partSrc.length - 1].replaceAll("_"," ")
 
         if (divImg.hasChildNodes()) {
             divImg.removeChild(divImg.firstElementChild)
@@ -132,7 +137,7 @@ export default class lightbox{
             //Images 
             const img = document.createElement( "img" )
             img.setAttribute("src", _src)   
-            img.setAttribute("alt",nomMedia)
+            img.setAttribute("alt", title)
             divImg.appendChild(img)
         }
 
@@ -142,19 +147,21 @@ export default class lightbox{
             video.setAttribute("src", _src)   
             video.setAttribute("autoplay","")   
             video.setAttribute("loop","") 
-            video.setAttribute("alt",nomMedia)
+            video.setAttribute("alt", title)
             divImg.appendChild(video)
         }
 
-        nomImg.textContent = nomMedia
+        nomImg.textContent = title
         divImg.appendChild(nomImg)
 
     }
 
+    //Fonction pour le media suivant
     nextMedia(debut) {
         this.displayLightbox(debut)
     }
 
+    //Fonction pour le media suivant
     prevMedia(debut) {
         this.displayLightbox(debut)
     }

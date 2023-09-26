@@ -1,3 +1,4 @@
+//Class pour l'organisation de la page index.html pour un photographe
 export default class photographerTemplate{ 
 
     constructor(data) {
@@ -5,6 +6,7 @@ export default class photographerTemplate{
 
     }
 
+    //Recuperation des variables globales 
     getVariable() {
         const { portrait } = this.data
         //Chemin de l'image du photographe
@@ -13,6 +15,7 @@ export default class photographerTemplate{
         return { picture}
     }
 
+    //Organisation et l'affichage pour un photographe pour la page index.html
     getUserCardDOM() {
         const {picture} = this.getVariable()
         const { name, city, country, tagline, price } = this.data
@@ -70,11 +73,13 @@ export default class photographerTemplate{
         return (article)
     }
 
+    //Lien vers la page photographer.html pour un photographe
     navUserCardDOM(link) {
         const { id } = this.data
         link.href = "./photographer.html?id="+id
     }
 
+    //Organisation et l'affichage de l'entete pour un photographe pour la page photographer.html
     getPhotographerCardDom() {
         const {picture} = this.getVariable()
         const { name, city, country, tagline } = this.data

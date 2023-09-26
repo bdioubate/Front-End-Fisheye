@@ -64,7 +64,6 @@
 /*Media Section*/
 #media-section {
     display: inline-flex;
-    /*margin: 0 100px;*/
     margin: 0 100px 100px 100px;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -84,13 +83,6 @@
     border-radius: 5px;
 }
 
-/*#media-section article a{
-    display: inline-block;
-    height: 350px;
-    width: 100%;
-    border-radius: 5px;
-}*/
-
 #media-section article img, #media-section article video{
     height: 350px;
     width: 100%;
@@ -102,19 +94,33 @@
 #media-section article figure figcaption{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #media-section article figure figcaption p{
     color: #901C1C;
     font-size: 24px;
+    min-width: 275px;
+    width: 275px;
+    max-width: 275px;
 }
 
 #media-section article figure figcaption #likes-section{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 60px;
+    min-width: 70px;
+    width: 70px;
+    max-width: 70px;
+}
+
+#media-section article figure figcaption #likes-section p{
+    color: #901C1C;
+    font-size: 24px;
+    min-width: 40px;
+    width: 40px;
+    max-width: 40px;
+    text-align: right;
 }
 
 #media-section article figure figcaption #likes-section .btnLikes{

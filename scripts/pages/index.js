@@ -1,5 +1,7 @@
+//Importation de la class photographerTemplate
 import photographerTemplate from "../templates/photographer.js"
 
+//Fonction pour recuperer les data dans le fichier JSON des photographes
 async function getPhotographers() {
     // Récupération des data depuis le fichier JSON photographers.json
     const reponse = await fetch("./data/photographers.json")
@@ -18,6 +20,7 @@ async function getPhotographers() {
         photographers: [...photographers]})
 }
 
+//Fonction pour l'affichage de tous les photographes dans le page index.html
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section")
 
@@ -28,11 +31,13 @@ async function displayData(photographers) {
     })
 }
 
+//Fonction pour le deroulement de tous les fonctions pour la page index.html
 async function init() {
     // Récupère les datas des photographes
     const { photographers } = await getPhotographers()
     displayData(photographers)
 }
 
+//Declaration de la fonction init()
 init()
     

@@ -1,3 +1,4 @@
+//Importation des class
 import photographerTemplate from "../templates/photographer.js"
 import mediaTemplate from "../templates/media.js"
 import btnLikes from "../utils/likes.js"
@@ -5,7 +6,7 @@ import menuDeroulant from "../utils/sort.js"
 import lightbox from "../utils/Lightbox.js"
 import contact from "../utils/contactForm.js"
 
-//Recuperation des data 
+//Recuperation des data dans le fichier JSON des photographes
 async function getData() {
     // Récupération des data depuis le fichier JSON photographers.json
     const reponse = await fetch("./data/photographers.json")
@@ -14,6 +15,7 @@ async function getData() {
     return {data}
 }
 
+//Fonction pour obtenir les informations des photographes avec l'aide de la fonction getData()
 async function getPhotographer() {
 
     //fonction qui récupére les paramètres d’URL et qui crée une variable urlParams
@@ -37,6 +39,7 @@ async function getPhotographer() {
         photographer: [...photographer]})
 }
 
+//Fonction pour l'affichage des informations pour un photographe dans le page photographer.html
 async function displayPhotograher(photographer) {
     //Factory photographer
     const main = document.querySelector("main")
@@ -46,6 +49,7 @@ async function displayPhotograher(photographer) {
 
 }
 
+//Fonction pour obtenir les medias pour un photographes avec l'aide de la fonction getData()
 async function getMedia(photographer) {
 
     // Récupération des data depuis le fichier JSON photographers.json
@@ -69,12 +73,14 @@ async function getMedia(photographer) {
     
 }
 
-function displayMediaPlus(allMediaPhotographer, objectPhotographer) {
+//Fonction pour l'affichage du menu de selection
+function displayMenuSelection(allMediaPhotographer, objectPhotographer) {
     const mediaEncart  = new mediaTemplate(allMediaPhotographer[0],objectPhotographer.name)
     //Menu de selection 
     mediaEncart.menuSelection()
 }
 
+//Fonction pour l'affichage des medias pour un photographe dans le page photographer.html
 export default function displayMedia(allMediaPhotographer, objectPhotographer) {
     const mediaEncart  = new mediaTemplate(allMediaPhotographer[0],objectPhotographer.name)
 
@@ -102,13 +108,14 @@ export default function displayMedia(allMediaPhotographer, objectPhotographer) {
 
 }
 
+//Fonction pour le deroulement de tous les fonctions pour la page photographer.html
 async function initPhotographer() {
     // Récupère les datas des photographes
     const { photographer } = await getPhotographer()
     displayPhotograher(photographer)
     //Media
     const {allMediaPhotographer} = await getMedia(photographer)
-    displayMediaPlus(allMediaPhotographer, photographer[0])
+    displayMenuSelection(allMediaPhotographer, photographer[0])
     displayMedia(allMediaPhotographer, photographer[0])
 
     //Likes
@@ -117,7 +124,7 @@ async function initPhotographer() {
     //Menu deroulant
     new menuDeroulant().content(allMediaPhotographer, photographer[0])
 
-    //Lightbox
+    //Lightbox 
     new lightbox().lightBoxModal()
     new lightbox().lightBoxCloseModal()
 
@@ -133,5 +140,6 @@ async function initPhotographer() {
     
 }
 
+//Declaration de la fonction initPhotographer()
 initPhotographer()
 

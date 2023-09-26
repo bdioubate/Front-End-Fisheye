@@ -1,7 +1,9 @@
+//Class pour l'organisation de la modal contact
 export default class contact{
     getVariable() {  
     }
 
+    //Fonction pour l'affichage de la modal
     displayModal(nomPhotographer) {
         //modal contact
         const modal = document.getElementById("contact_modal")
@@ -20,7 +22,8 @@ export default class contact{
         form.style.display = "block"
 
         //Titre du formulaire en display none
-        const titreForm = document.querySelector(".modal header h2")
+        const titreForm = document.querySelector(".modal header h2") 
+        titreForm.textContent = `Contactez-moi ${nomPhotographer}`
         titreForm.style.display = "block"
 
         //Modifier header contact
@@ -32,11 +35,13 @@ export default class contact{
         formBody.style.display = "none"
     }
 
+    //Fonction pour fermer la modal
     closeModal() {
         const modal = document.getElementById("contact_modal")
         modal.style.display = "none"
     }
 
+    //Fonction pour la validation des champs du formulaire
     validateChamp() {
         const champ = document.querySelectorAll(".formData")
         const regex = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/
@@ -59,6 +64,7 @@ export default class contact{
         }
     }
 
+    //Fonction pour l'affichage du message d'erreur
     AfficheMessageErreur(erreur) {
         const phrase = erreur.message
         let balise = document.getElementById(`${phrase.split(" ")[phrase.split(" ").length-1]}`)
@@ -66,13 +72,14 @@ export default class contact{
         balise.parentNode.dataset.error = `${phrase.replaceAll(`${phrase.split(" ").pop()}`, " ")}`
     }
 
+    //Fonction pour supprimer le message d'erreur
     SupprimeMessageErreur(erreur) {
         let balise = document.getElementById(`${erreur}`)
         delete balise.dataset.errorVisible
         delete balise.parentNode.dataset.error 
     }
 
-
+    //Fonction pour la gestion des champs du formulaire
     validate() {
         try {
             this.validateChamp()
@@ -84,7 +91,8 @@ export default class contact{
         return true
     }
 
-    modifierForm() {
+    //Fonction pour l'affichage de confirmation apres l'envoi du formulaire
+    modifierForm(nomPhotographer) {
         //Formulaire en display none
         const form = document.querySelector("form")
         form.style.display = "none"
@@ -100,7 +108,7 @@ export default class contact{
         //Modifier la class body 
         const formBody = document.getElementById("formBody")
         formBody.style.display = "flex"
-        formBody.innerHTML = "<p>Votre message a bien été envoyé</p>"
+        formBody.innerHTML = `<p>Votre message a bien été envoyé à ${nomPhotographer}</p>`
 
         //Effacer le contenu du formulaire
         const champ = document.querySelectorAll(".formData")
@@ -109,6 +117,7 @@ export default class contact{
         }
     }
 
+    //Fonction pour declancher l'affichage modal contact
     showModalContact() {
         const btnShowContact = document.querySelector(".contact_button")
         const idBtnShowContact = btnShowContact.id
@@ -117,6 +126,7 @@ export default class contact{
         })
     }
 
+    //Fonction pour fermer la modal
     closeModalContact() {
         const btnCloseModalContact = document.querySelector(".modal header img")
         btnCloseModalContact.addEventListener("click", () => {
@@ -124,6 +134,7 @@ export default class contact{
         })
     }
 
+    //Fonction de la gestion globale du formulaire
     validationForm() {  
         const form = document.querySelector("form")
         form.addEventListener("submit", (event) => {
@@ -131,7 +142,9 @@ export default class contact{
             if(!new contact().validate()) {
                 return
             }
-            new contact().modifierForm()
+            const btnShowContact = document.querySelector(".contact_button")
+            const idBtnShowContact = btnShowContact.id
+            new contact().modifierForm(idBtnShowContact)
         })
     }
 }

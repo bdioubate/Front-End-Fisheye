@@ -40,7 +40,6 @@ h1 {
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    /*column-gap: 5px;*/
     row-gap: 55px;
     margin: 100px 0;
 }

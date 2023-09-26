@@ -1,3 +1,4 @@
+//Class pour l'organisation de la page photographer.html
 export default class mediaTemplate{
     constructor(data, name) {
         this.data = data
@@ -5,6 +6,7 @@ export default class mediaTemplate{
 
     }
 
+    //Recuperation des variables globales 
     getVariable() {
         const name = this.name
 
@@ -19,10 +21,9 @@ export default class mediaTemplate{
         return { picture, videoMedia }
     }
 
-    
-
+    //Organisation et l'affichage pour un photographe pour la page index.html
     getPhotographerMediaDom() {
-
+        
         const { title, image, video, likes } = this.data
 
         const { picture, videoMedia } = this.getVariable()
@@ -37,11 +38,11 @@ export default class mediaTemplate{
 
         if(image){
             //Images 
-            const img = document.createElement( "img" )
+            const img = document.createElement( "img" ) 
             img.setAttribute("src", picture)
             //Nom de l'image
-            const nomImage = image.split(".")[0].replaceAll("_"," ")
-            img.ariaLabel = `${nomImage}, vue rapprochée`
+            //const nomImage = image.split(".")[0].replaceAll("_"," ")
+            img.setAttribute("alt",`${title}, vue rapprochée`)
             figure.appendChild(img)
         }
 
@@ -50,8 +51,8 @@ export default class mediaTemplate{
             const videoPhographer = document.createElement( "video" )
             videoPhographer.setAttribute("src", videoMedia)
             //Nom de le video
-            const nomVideo = video.split(".")[0].replaceAll("_"," ")
-            videoPhographer.ariaLabel = `${nomVideo}, vue rapprochée`
+            //const nomVideo = video.split(".")[0].replaceAll("_"," ")
+            videoPhographer.setAttribute("alt", `${title}, vue rapprochée`)
             //videoPhographer.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`)
             figure.appendChild(videoPhographer)
         }
@@ -85,6 +86,7 @@ export default class mediaTemplate{
         return (article)
     }
 
+    //Fonction pour l'affichage des medias 
     mediaSection() {
         const main = document.querySelector("main")
     
@@ -94,6 +96,7 @@ export default class mediaTemplate{
         main.appendChild(mediaSection)
     }
     
+    //Fonction pour l'affichage du menu de selection
     menuSelection() {
         //Factory media
         const main = document.querySelector("main")
@@ -146,6 +149,7 @@ export default class mediaTemplate{
         menuDeroulant.appendChild(buttonMenuDeroulantTitre) 
     }
 
+    //Fonction pour l'affichage de l'encard
     encartCard(nbLikes, pricePhotographer) {
         const main = document.querySelector("main")
     
@@ -171,7 +175,6 @@ export default class mediaTemplate{
 
         //Prix du photographe
         const pPrice = document.createElement( "p" )
-        //pPrice.setAttribute("id","price")
         pPrice.textContent = `${pricePhotographer}€/jour`
         encart.appendChild(pPrice)
     }

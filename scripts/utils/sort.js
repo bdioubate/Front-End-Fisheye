@@ -1,13 +1,16 @@
+//Importation des class
 import displayMedia from "../pages/photographer.js"
 import lightbox from "./Lightbox.js"
 import btnLikes from "./likes.js"
 
+//Class pour la gestion du trie des medias
 export default class menuDeroulant{
 
     constructor(allMediaPhotographer) {
         this.allMediaPhotographer = allMediaPhotographer
     }
 
+    //Recuperation des variables globales
     getVariable() {
         const menuDeroulant = document.getElementById("menu-deroulant")
         const allBtn = menuDeroulant.getElementsByClassName("btnMenu")
@@ -21,6 +24,7 @@ export default class menuDeroulant{
         return {menuDeroulant, allBtn, btnFirst, btnSecond, btnThird, arrowBtnFirstDown, arrowBtnFirstUp, createArrowBtnFirstUp}
     }
 
+    //Fonction pour declancher les fonctions de trie au click sur les boutons du menu deroulant
     showMenuDeroulant() {
         const {allBtn, btnFirst, btnSecond, arrowBtnFirstDown} = this.getVariable()
 
@@ -55,6 +59,7 @@ export default class menuDeroulant{
         })    
     }
 
+    //Fonction de la gestion des differents trie
     sortMedia(typeSort,allMediaPhotographer, photographer) {
         if(typeSort === "Date") {
             allMediaPhotographer.sort(function (a, b) {
@@ -84,22 +89,17 @@ export default class menuDeroulant{
             allMediaSection[i].remove()
         }
 
-        //const menu = document.querySelectorAll("#menu-selection")
-        //const menu = document.getElementById("menu-selection")
-        //menu.remove()
         displayMedia(allMediaPhotographer, photographer)
-        //const menu = document.querySelectorAll("#menu-selection")
-        //menu[1].remove()
-        //const encart = document.querySelectorAll("#encart")
-        //encart[1].remove()
         new lightbox().lightBoxModal()
         new btnLikes().allBtnLiked()
         this.showMenuDeroulant()
     }
 
+    //Fonction pour changer l'ordres des boutons du menu deroulant au click d'un bouton
     changeOrderBtn(allMediaPhotographer, photographer) {
         const {btnFirst, btnSecond, btnThird, createArrowBtnFirstUp} = this.getVariable()
 
+        //Au click du 2eme bouton
         btnSecond.addEventListener("click", () => {
             createArrowBtnFirstUp.setAttribute("class","fa-solid fa-angle-up") 
 
@@ -118,6 +118,7 @@ export default class menuDeroulant{
             this.showMenuDeroulant()
         }) 
 
+        //Au click du 3eme bouton
         btnThird.addEventListener("click", () => {
             createArrowBtnFirstUp.setAttribute("class","fa-solid fa-angle-up") 
 
@@ -137,14 +138,12 @@ export default class menuDeroulant{
 
     }
 
+    //Fonction qui regroupe les 2 grosse fonction pour le deroulement du trie
     content(allMediaPhotographer, photographer) {
         this.showMenuDeroulant()
         this.changeOrderBtn(allMediaPhotographer, photographer)
     }
-
-
-
-
+    
 }
 
 
