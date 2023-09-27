@@ -50,9 +50,10 @@ export default class mediaTemplate{
             //Video 
             const videoPhographer = document.createElement( "video" )
             videoPhographer.setAttribute("src", videoMedia)
+            videoPhographer.setAttribute("type","video/mp4")
             //Nom de le video
             //const nomVideo = video.split(".")[0].replaceAll("_"," ")
-            videoPhographer.setAttribute("alt", `${title}, vue rapprochée`)
+            videoPhographer.setAttribute("title", `${title}, vue rapprochée`)
             //videoPhographer.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`)
             figure.appendChild(videoPhographer)
         }

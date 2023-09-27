@@ -144,10 +144,12 @@ export default class lightbox{
         if(typeUrlActuelle === "mp4") {
             //Images 
             const video = document.createElement( "video" )
+            video.controls = true
             video.setAttribute("src", _src)   
+            video.setAttribute("type","video/mp4")
             video.setAttribute("autoplay","")   
             video.setAttribute("loop","") 
-            video.setAttribute("alt", title)
+            video.setAttribute("title", title)
             divImg.appendChild(video)
         }
 
