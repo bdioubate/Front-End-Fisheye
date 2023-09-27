@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" >
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" >
     <title>Fisheye - photographe </title>
   </head>
   <body>
     <header>
       <a href="./index.html" id="logo">
-        <img src="assets/images/logo.png" alt="Fisheye Home page"/>
+        <img src="assets/images/logo.png" alt="Fisheye Home page">
       </a>
     </header>
     <main id="main">
@@ -19,11 +19,11 @@
         <button class="contact_button" aria-label="Contactez-moi">Contactez-moi</button>
       </div>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
+    <section id="contact_modal">
+			<article class="modal">
 				<header>
           <h2></h2>
-          <img src="assets/icons/close.svg" alt="Fermeture du formulaire contact"/>
+          <img src="assets/icons/close.svg" alt="Fermeture du formulaire contact">
         </header>
 				<form>
 					<div>
@@ -33,8 +33,8 @@
               type="text"
               id="prenomData"
               name="prénom"
-              aria-labelledby="Prénom"
-            />
+              aria-label="Prénom"
+            >
 					</div>
           <div>
 						<label>Nom</label>
@@ -43,8 +43,8 @@
               type="text"
               id="nomData"
               name="nom"
-              aria-labelledby="Nom"
-            />
+              aria-label="Nom"
+            >
 					</div>
           <div>
 						<label>Email</label>
@@ -54,31 +54,29 @@
               id="emailData"
               name="nom"
               minlength="2"
-              aria-labelledby="Email"
-            />
+              aria-label="Email"
+            >
 					</div>
           <div>
 						<label>Message</label>
 						<textarea
               class="formData"
-              type="text"
               id="messageData"
-              name="nom"
               minlength="2"
-              aria-labelledby="Votre message"
+              aria-label="Votre message"
             ></textarea>
 					</div>
           <button class="contact_button" aria-label="Envoyer">Envoyer</button>
 				</form>
         <div id="formBody">
         </div>
-			</div>
-		</div>
-    <div id="lightbox_modal">
-      <div id="contentLightbox" aria-label="image vue rapprochée">
+			</article>
+    </section>
+    <section id="lightbox_modal">
+      <article id="contentLightbox" aria-label="image vue rapprochée">
         <button id="closeLightBox" aria-label="Fermeture de la vue">
         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42">
-          <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" />
+          <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"/>
         </svg>
         </button>
         <button id="btnLeft" class="arrow" aria-label="Image précédent">
@@ -92,9 +90,9 @@
             <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/>
           </svg>
         </button>
-      </div>
+      </article>
       
-    </div>
+    </section>
     <script type="module" src="scripts/templates/photographer.js"></script>
     <script type="module" src="scripts/pages/photographer.js"></script>
     <script type="module" src="scripts/templates/media.js"></script>
