@@ -91,8 +91,8 @@ export default class lightbox{
                 }
             }
             //Focus sur bouton fermer
-            else if (e.key === "ArrowUp") {
-                document.getElementById("closeLightBox").focus()
+            else if (e.key === "Escape") {
+                document.getElementById("closeLightBox").click()
             }
         }
 

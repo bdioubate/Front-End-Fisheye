@@ -35,7 +35,7 @@ export default class photographerTemplate{
         //Images 
         const img = document.createElement( "img" )
         img.setAttribute("src", picture)
-        img.setAttribute("alt","")
+        img.setAttribute("alt",`Photo de ${name}`)
         link.appendChild(img)
 
         //Balise figcaption

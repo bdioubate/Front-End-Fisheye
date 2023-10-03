@@ -43,6 +43,7 @@ export default class mediaTemplate{
             //Nom de l'image
             //const nomImage = image.split(".")[0].replaceAll("_"," ")
             img.setAttribute("alt",`${title}, vue rapprochée`)
+            console.log(img)
             figure.appendChild(img)
         }
 

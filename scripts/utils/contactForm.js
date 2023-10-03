@@ -87,7 +87,6 @@ export default class contact{
             this.AfficheMessageErreur(Error)
             return false
         }
-
         return true
     }
 
@@ -132,6 +131,15 @@ export default class contact{
         btnCloseModalContact.addEventListener("click", () => {
             this.closeModal()
         })
+
+        //Navigation avec le clavier
+        document.onkeydown = (e) => {
+            //Focus sur bouton fermer
+            if (e.key === "Escape") {
+                document.getElementById("closeModalContact").click()
+                console.log("reussie a focus")
+            }
+        }
     }
 
     //Fonction de la gestion globale du formulaire
@@ -142,6 +150,10 @@ export default class contact{
             if(!new contact().validate()) {
                 return
             }
+            const champ = document.querySelectorAll(".formData")
+            console.log(champ[0].value)
+            console.log(champ[1].value)
+            console.log(champ[2].value)
             const btnShowContact = document.querySelector(".contact_button")
             const idBtnShowContact = btnShowContact.id
             new contact().modifierForm(idBtnShowContact)
