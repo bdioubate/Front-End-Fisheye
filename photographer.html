@@ -11,7 +11,7 @@
   <body>
     <header>
       <a href="./index.html" id="logo">
-        <img src="assets/images/logo.png" alt="Fisheye Home page">
+        <img src="assets/images/logo.png" title="image du logo du site" alt="Fisheye Home page">
       </a>
     </header>
     <main id="main">
@@ -27,30 +27,27 @@
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
+						<label for="prenomData">Prénom</label>
 						<input
               class="formData"
-              type="text"
               id="prenomData"
               name="prénom"
               aria-label="Prénom"
             >
 					</div>
           <div>
-						<label>Nom</label>
+						<label for="nomData">Nom</label>
 						<input
               class="formData"
-              type="text"
               id="nomData"
               name="nom"
               aria-label="Nom"
             >
 					</div>
           <div>
-						<label>Email</label>
+						<label for="emailData">Email</label>
 						<input
               class="formData"
-              type="text"
               id="emailData"
               name="nom"
               minlength="2"
@@ -58,7 +55,7 @@
             >
 					</div>
           <div>
-						<label>Message</label>
+						<label for="messageData">Message</label>
 						<textarea
               class="formData"
               id="messageData"
