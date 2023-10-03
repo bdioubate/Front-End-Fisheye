@@ -132,9 +132,6 @@ export default class lightbox{
         let parts = _src.split(".")
         typeUrlActuelle = parts[parts.length - 1]
 
-        //Recuperation du nom de l'image ou la video
-        let partSrc = parts[0].split("/")
-
         if (divImg.hasChildNodes()) {
             divImg.removeChild(divImg.firstElementChild)
             divImg.removeChild(divImg.lastElementChild)

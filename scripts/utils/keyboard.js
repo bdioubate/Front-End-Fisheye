@@ -24,23 +24,16 @@ export default class keyboard{
                 if(i>0) {
                     nav[i-1].blur() 
                 }
-                //console.log(nav.length)
-                //console.log(i)
-                //console.log(nav[i])
 
                 if(i===0 && !on){
-                    console.log("rentrer en 0")
                     nav[i].focus()
                     on = true
                 }
                 //si le menu-deroulant est fermé
                 else if(i === 2 && nav[i+1].style.display === "none" ){
-                    console.log("rentrer"+i)
                     i=5
                     nav[i].focus()
                 }else{
-                    console.log("pas rentrer"+i)
-                    console.log(nav[i])
                     i++
                     //si on arrive a la derniere media
                     if(i >= nav.length) {
@@ -61,9 +54,21 @@ export default class keyboard{
                 }    
             }
 
-            //
-            
+            //Prev media
+            if (e.key === "ArrowLeft") {
+                            
+                if(i == 0) {
+                    i=nav.length
+                }
+                i--
+                console.log(i)
+                console.log(nav.length)
+                nav[i].focus()
+                console.log(nav[i])
+            }
         }
+            
+        
     }
 
     keyboardNavContact() {
@@ -77,18 +82,16 @@ export default class keyboard{
                 if(j>0) {
                     navContact[j-1].blur() 
                 }
-                console.log(navContact.length)
-                console.log(j)
-                console.log(navContact[j])
                 
                 navContact[j].focus()
-                    j++
+                j++
 
                 //Quand on arrive a la derniere media
                 if(j >= navContact.length) {
                     j=0
                 }
             }
+
             //Focus sur bouton fermer
             if (e.key === "Escape") {
                 document.getElementById("closeModalContact").click()
@@ -97,16 +100,4 @@ export default class keyboard{
         }
 
     }
-
-    /*
-    nextNav(i) {
-        this.displayNav(i)
-    }
-
-    displayNav(i) {
-        const {nav} = this.getVariable()
-
-        nav[i].focus()
-        console.log(i)
-    }*/
 }

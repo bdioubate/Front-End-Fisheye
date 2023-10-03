@@ -119,6 +119,11 @@ export default class menuDeroulant{
 
             btnSecond.textContent = temporaryText
             btnSecond.dataset.value = temporaryDataset
+
+            //Faire disparaire menu deroulant
+            btnSecond.style.display = "none"
+            btnThird.style.display = "none"
+            
             this.showMenuDeroulant()
         }) 
 
@@ -137,6 +142,11 @@ export default class menuDeroulant{
 
             btnThird.textContent = temporaryText
             btnThird.dataset.value = temporaryDataset
+
+            //Faire disparaire menu deroulant
+            btnSecond.style.display = "none"
+            btnThird.style.display = "none"
+            
             this.showMenuDeroulant()
         })
 
