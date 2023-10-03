@@ -69,6 +69,10 @@
     line-height: normal;
 }
 
+#btnLeft:focus, #btnRight:focus{
+    border: 2px solid;
+}
+
 /* Tablette */
 @media (max-width: 747px) {
     #lightbox_modal #contentLightbox button#closeLightBox{

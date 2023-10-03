@@ -126,6 +126,9 @@
 #media-section article figure figcaption #likes-section .btnLikes{
     color: #901C1C;
     cursor: pointer;
+    height: 25px;
+    display: grid;
+    place-items: center;
 }
 
 #encart {

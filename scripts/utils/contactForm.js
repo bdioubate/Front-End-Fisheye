@@ -1,3 +1,5 @@
+import keyboard from "./keyboard.js"
+
 //Class pour l'organisation de la modal contact
 export default class contact{
     getVariable() {  
@@ -39,6 +41,7 @@ export default class contact{
     closeModal() {
         const modal = document.getElementById("contact_modal")
         modal.style.display = "none"
+        new keyboard().keyboardNav()
     }
 
     //Fonction pour la validation des champs du formulaire
@@ -122,6 +125,8 @@ export default class contact{
         const idBtnShowContact = btnShowContact.id
         btnShowContact.addEventListener("click", () => {
             this.displayModal(idBtnShowContact)
+            this.closeModalContact()
+            new keyboard().keyboardNavContact()
         })
     }
 
@@ -137,7 +142,6 @@ export default class contact{
             //Focus sur bouton fermer
             if (e.key === "Escape") {
                 document.getElementById("closeModalContact").click()
-                console.log("reussie a focus")
             }
         }
     }

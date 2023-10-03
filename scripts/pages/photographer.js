@@ -5,6 +5,7 @@ import btnLikes from "../utils/likes.js"
 import menuDeroulant from "../utils/sort.js"
 import lightbox from "../utils/Lightbox.js"
 import contact from "../utils/contactForm.js"
+import keyboard from "../utils/keyboard.js"
 
 //Recuperation des data dans le fichier JSON des photographes
 async function getData() {
@@ -132,11 +133,11 @@ async function initPhotographer() {
     //Montrer la modal contact au click sur ce bouton
     new contact().showModalContact()
 
-    //Fermer la modal contact au click sur cette balise img
-    new contact().closeModalContact()
-
     // Gestion de l'événement submit sur le formulaire. 
     new contact().validationForm()
+
+    //
+    new keyboard().keyboardNav() 
     
 }
 

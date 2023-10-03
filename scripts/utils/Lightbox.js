@@ -1,3 +1,5 @@
+import keyboard from "./keyboard.js"
+
 //Class pour l'organisation de la modal lightbox
 export default class lightbox{
    
@@ -70,6 +72,7 @@ export default class lightbox{
         document.onkeydown = (e) => {
             //Next media
             if (e.key === "ArrowRight") {
+                document.getElementById("btnRight").click()
                 document.getElementById("btnRight").focus()
                 if(j>=0){
                     j++
@@ -81,6 +84,7 @@ export default class lightbox{
             }
             //Prev media
             else if (e.key === "ArrowLeft") {
+                document.getElementById("btnLeft").click()
                 document.getElementById("btnLeft").focus()
                 if(j>=0){
                     j--
@@ -95,8 +99,6 @@ export default class lightbox{
                 document.getElementById("closeLightBox").click()
             }
         }
-
-
     }
 
     //Fonction pour fermer la modal
@@ -108,11 +110,16 @@ export default class lightbox{
             modal.style.display = "none"
 
             mainBody.style.display = "block"
+
+            new keyboard().keyboardNav()
         })
+
+        
     }
 
     //Fonction pour l'affichage de l'image ou la video dans la modal
     displayLightbox(i) {
+        this.lightBoxModal()
         const { divImg, tabMedia, nomImg} = this.getVariable()
 
         const _src = tabMedia.children[i].children[0].children[0].getAttribute("src") 

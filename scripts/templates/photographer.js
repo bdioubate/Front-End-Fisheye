@@ -25,11 +25,13 @@ export default class photographerTemplate{
 
         //Balise figure
         const figure = document.createElement( "figure" )
+        //figure.setAttribute("class","nav")
         article.appendChild(figure)
 
         //Balise a
         const link = document.createElement( "a" )
         link.addEventListener("click", this.navUserCardDOM(link))
+        link.setAttribute("class","nav")
         figure.appendChild(link)
 
         //Images 

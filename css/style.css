@@ -27,13 +27,13 @@ h1 {
     margin-right: 100px;
 }
 
-#logo {
+.logo {
     height: 50px;
     margin-left: 100px;
     cursor: pointer;
 }
 
-#logo img {
+.logo img {
     height: 100%;
 }
 
@@ -63,6 +63,10 @@ h1 {
     width: 200px;
 }
 
+.nav:focus-visible, .navContact:focus-visible{
+    border: 2px solid black !important;
+}
+
 /* Tablette */
 @media (max-width: 1024px) {
     .photographer_section {
@@ -78,7 +82,7 @@ h1 {
 
     }
 
-    h1, #logo{
+    h1, .logo{
         width: 100%;
         text-align: center;
         margin: 0;
