@@ -150,6 +150,7 @@ export default class lightbox{
             video.setAttribute("autoplay","")   
             video.setAttribute("loop","") 
             video.setAttribute("title", title)
+            video.ariaLabel = `video ${title}`
             divImg.appendChild(video)
         }
 

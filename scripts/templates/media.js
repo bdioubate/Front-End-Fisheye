@@ -51,6 +51,7 @@ export default class mediaTemplate{
             const videoPhographer = document.createElement( "video" )
             videoPhographer.setAttribute("src", videoMedia)
             videoPhographer.setAttribute("type","video/mp4")
+            videoPhographer.ariaLabel = `video ${title}`
             //Nom de le video
             //const nomVideo = video.split(".")[0].replaceAll("_"," ")
             videoPhographer.setAttribute("title", `${title}, vue rapprochée`)
