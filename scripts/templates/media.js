@@ -36,16 +36,20 @@ export default class mediaTemplate{
         const figure = document.createElement( "figure" )
         article.appendChild(figure)
 
+        //Balise button media
+        const btnMedia = document.createElement("button") 
+        figure.appendChild(btnMedia)
+
         if(image){
             //Images 
             const img = document.createElement( "img" ) 
             img.setAttribute("src", picture)
             //Nom de l'image
             //const nomImage = image.split(".")[0].replaceAll("_"," ")
-            img.setAttribute("alt",`${title}, vue rapprochée`)
-            img.setAttribute("class","nav")
-            img.setAttribute("tabindex","0")
-            figure.appendChild(img)
+            img.setAttribute("alt",`${title}, vue rapprochée`) 
+            btnMedia.setAttribute("class","img")
+            btnMedia.ariaLabel = `${title}, vue rapprochée`
+            btnMedia.appendChild(img)
         }
 
         if(video){
@@ -57,10 +61,9 @@ export default class mediaTemplate{
             //Nom de le video
             //const nomVideo = video.split(".")[0].replaceAll("_"," ")
             videoPhographer.setAttribute("title", `${title}, vue rapprochée`)
-            //videoPhographer.setAttribute("onclick",`new lightbox().lightBoxModal(this.src)`)
-            videoPhographer.setAttribute("class","nav")
-            videoPhographer.setAttribute("tabindex","0")
-            figure.appendChild(videoPhographer)
+            btnMedia.setAttribute("class","video") 
+            btnMedia.ariaLabel = `${title}, vue rapprochée`
+            btnMedia.appendChild(videoPhographer)
         }
 
         //balise figcaption
@@ -82,13 +85,20 @@ export default class mediaTemplate{
         likesImg.textContent = likes
         likesSection.appendChild(likesImg)
 
+        //Button des likes img
+        const btnIconLikesImg = document.createElement("button")
+        btnIconLikesImg.setAttribute("class","btnLikes")
+        btnIconLikesImg.setAttribute("data-liked",false)
+        btnIconLikesImg.ariaLabel = "likes"
+        likesSection.appendChild(btnIconLikesImg)
+
         //Count likes img
         const iconLikesImg = document.createElement("i")
-        iconLikesImg.setAttribute("class","fa-regular fa-heart fa-xl btnLikes nav")
-        iconLikesImg.setAttribute("data-liked",false)
-        iconLikesImg.ariaLabel = "likes"
-        iconLikesImg.setAttribute("tabindex","0")
-        likesSection.appendChild(iconLikesImg)
+        iconLikesImg.setAttribute("class","fa-regular fa-heart fa-xl")
+        /*iconLikesImg.setAttribute("data-liked",false)
+        iconLikesImg.ariaLabel = "likes"*/
+        /*likesSection.appendChild(iconLikesImg)*/
+        btnIconLikesImg.appendChild(iconLikesImg)
 
         return (article)
     }
@@ -119,7 +129,7 @@ export default class mediaTemplate{
         menuSelection.appendChild(trierPar)
     
         //Creation du menu deroulant
-        const menuDeroulant = document.createElement("div") 
+        const menuDeroulant = document.createElement("div")  
         menuDeroulant.setAttribute("id","menu-deroulant")
         menuDeroulant.ariaLabel = "Trier par"
         menuSelection.appendChild(menuDeroulant)
@@ -127,8 +137,8 @@ export default class mediaTemplate{
         //Creation du bouton popularité du menu de deroulant
         const buttonMenuDeroulantPopularite = document.createElement("button") 
         //buttonMenuDeroulantPopularite.textContent = "Popularité"
-        buttonMenuDeroulantPopularite.setAttribute("class","btnMenu nav")
-        buttonMenuDeroulantPopularite.setAttribute("tabindex","0")
+        buttonMenuDeroulantPopularite.setAttribute("class","btnMenu")
+        /*buttonMenuDeroulantPopularite.setAttribute("tabindex","0")*/
         buttonMenuDeroulantPopularite.setAttribute("data-value","Popularité")
         buttonMenuDeroulantPopularite.textContent = buttonMenuDeroulantPopularite.dataset.value
 
@@ -143,7 +153,7 @@ export default class mediaTemplate{
         //Creation du bouton date du menu de deroulant
         const buttonMenuDeroulantDate = document.createElement("button") 
         buttonMenuDeroulantDate.style.display = "none"
-        buttonMenuDeroulantDate.setAttribute("class","btnMenu nav")
+        buttonMenuDeroulantDate.setAttribute("class","btnMenu")
         buttonMenuDeroulantDate.setAttribute("data-value","Date")
         buttonMenuDeroulantDate.textContent = buttonMenuDeroulantDate.dataset.value
         menuDeroulant.appendChild(buttonMenuDeroulantDate) 
@@ -151,7 +161,7 @@ export default class mediaTemplate{
         //Creation du bouton date du menu de deroulant
         const buttonMenuDeroulantTitre = document.createElement("button") 
         buttonMenuDeroulantTitre.style.display = "none"
-        buttonMenuDeroulantTitre.setAttribute("class","btnMenu nav")
+        buttonMenuDeroulantTitre.setAttribute("class","btnMenu")
         buttonMenuDeroulantTitre.setAttribute("data-value","Titre")
         buttonMenuDeroulantTitre.textContent = buttonMenuDeroulantTitre.dataset.value
         menuDeroulant.appendChild(buttonMenuDeroulantTitre) 

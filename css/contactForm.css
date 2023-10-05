@@ -43,6 +43,11 @@ div[data-error]::after {
   text-align: center;
 }
 
+#contact_modal .modal header button {
+  background: none;
+  border: none;
+}
+
 /* Mobile */
 @media (max-width: 747px) {
   div[data-error]::after {

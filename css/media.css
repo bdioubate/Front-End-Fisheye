@@ -83,12 +83,20 @@
     border-radius: 5px;
 }
 
-#media-section article img, #media-section article video{
+#media-section article .img, #media-section article .video{
     height: 350px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+#media-section article .img img, #media-section article .video video{
+    height: 100%;
     width: 100%;
     object-fit: cover;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 #media-section article figure figcaption{
@@ -123,12 +131,14 @@
     text-align: right;
 }
 
-#media-section article figure figcaption #likes-section .btnLikes{
+#media-section article figure figcaption #likes-section .btnLikes{  
     color: #901C1C;
     cursor: pointer;
     height: 25px;
     display: grid;
     place-items: center;
+    background: none;
+    border: none;
 }
 
 #encart {

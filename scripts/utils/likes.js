@@ -14,7 +14,7 @@ export default class btnLikes{
 
         AllbtnLikes[index].addEventListener("click", function () {
             if(AllbtnLikes[index].dataset.liked === "false") {
-                AllbtnLikes[index].setAttribute("class","fa-solid fa-heart fa-xl btnLikes")  
+                AllbtnLikes[index].children[0].setAttribute("class","fa-solid fa-heart fa-xl")  
                 AllbtnLikes[index].setAttribute("data-liked",true)
 
                 //Ajoute +1 au chiffre de la balise p avant la balise i
@@ -24,7 +24,7 @@ export default class btnLikes{
                 document.querySelector("#likes p").innerHTML++
             }else {
                 AllbtnLikes[index].setAttribute("data-liked",false)
-                AllbtnLikes[index].setAttribute("class","fa-regular fa-heart fa-xl btnLikes") 
+                AllbtnLikes[index].children[0].setAttribute("class","fa-regular fa-heart fa-xl") 
 
                 //Retire +1 au chiffre de la balise p avant la balise i
                 AllbtnLikes[index].previousSibling.innerHTML--

@@ -1,6 +1,5 @@
 //Importation de la class photographerTemplate
 import photographerTemplate from "../templates/photographer.js"
-import keyboard from "../utils/keyboard.js"
 
 //Fonction pour recuperer les data dans le fichier JSON des photographes
 async function getPhotographers() {
@@ -37,9 +36,6 @@ async function init() {
     // Récupère les datas des photographes
     const { photographers } = await getPhotographers()
     displayData(photographers)
-
-    //
-    new keyboard().keyboardNav() 
 }
 
 //Declaration de la fonction init()

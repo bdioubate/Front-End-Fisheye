@@ -3,7 +3,6 @@ import displayMedia from "../pages/photographer.js"
 import lightbox from "./Lightbox.js"
 import btnLikes from "./likes.js"
 import contact from "./contactForm.js"
-import keyboard from "./keyboard.js"
 
 //Class pour la gestion du trie des medias
 export default class menuDeroulant{
@@ -96,7 +95,6 @@ export default class menuDeroulant{
         new btnLikes().allBtnLiked() 
         new contact().closeModalContact()
         this.showMenuDeroulant()
-        new keyboard().keyboardNav() 
     }
 
     //Fonction pour changer l'ordres des boutons du menu deroulant au click d'un bouton

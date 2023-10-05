@@ -1,5 +1,3 @@
-import keyboard from "./keyboard.js"
-
 //Class pour l'organisation de la modal lightbox
 export default class lightbox{
    
@@ -33,7 +31,7 @@ export default class lightbox{
 
         for (let i = 0;i < tabMedia.children.length;i++) {
             //Click article
-            tabMedia.children[i].children[0].children[0].addEventListener("click", () => {
+            tabMedia.children[i].children[0].children[0].addEventListener("click", () => {  
 
                 modal.style.display = "grid"
 
@@ -110,8 +108,6 @@ export default class lightbox{
             modal.style.display = "none"
 
             mainBody.style.display = "block"
-
-            new keyboard().keyboardNav()
         })
 
         
@@ -122,7 +118,7 @@ export default class lightbox{
         this.lightBoxModal()
         const { divImg, tabMedia, nomImg} = this.getVariable()
 
-        const _src = tabMedia.children[i].children[0].children[0].getAttribute("src") 
+        const _src = tabMedia.children[i].children[0].children[0].children[0].getAttribute("src") 
         const title = tabMedia.children[i].children[0].children[1].children[0].textContent 
 
         //global _src

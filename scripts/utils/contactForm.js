@@ -1,5 +1,3 @@
-import keyboard from "./keyboard.js"
-
 //Class pour l'organisation de la modal contact
 export default class contact{
     getVariable() {  
@@ -35,13 +33,24 @@ export default class contact{
         //Modifier la class body 
         const formBody = document.getElementById("formBody")
         formBody.style.display = "none"
+
+        //Modifier balise main
+        const main = document.querySelector("main")
+        main.style.display = "none"
+
+        //Modifier balise header
+        const header = document.querySelector("header")
+        header.style.display = "none"
     }
 
     //Fonction pour fermer la modal
     closeModal() {
         const modal = document.getElementById("contact_modal")
         modal.style.display = "none"
-        new keyboard().keyboardNav()
+        const main = document.querySelector("main")
+        main.style.display = "block"
+        const header = document.querySelector("header")
+        header.style.display = "flex"
     }
 
     //Fonction pour la validation des champs du formulaire
@@ -126,13 +135,13 @@ export default class contact{
         btnShowContact.addEventListener("click", () => {
             this.displayModal(idBtnShowContact)
             this.closeModalContact()
-            new keyboard().keyboardNavContact()
+            this.keyboardNavContact()
         })
     }
 
     //Fonction pour fermer la modal
     closeModalContact() {
-        const btnCloseModalContact = document.querySelector(".modal header img")
+        const btnCloseModalContact = document.querySelector("#contact_modal .modal header button")
         btnCloseModalContact.addEventListener("click", () => {
             this.closeModal()
         })
@@ -141,7 +150,7 @@ export default class contact{
         document.onkeydown = (e) => {
             //Focus sur bouton fermer
             if (e.key === "Escape") {
-                document.getElementById("closeModalContact").click()
+                document.querySelector("#contact_modal .modal header button").click()
             }
         }
     }
@@ -162,5 +171,17 @@ export default class contact{
             const idBtnShowContact = btnShowContact.id
             new contact().modifierForm(idBtnShowContact)
         })
+    }
+
+    keyboardNavContact() {
+        //Defilement avec le clavier
+        document.onkeydown = (e) => {
+            //Focus sur bouton fermer
+            if (e.key === "Escape") {
+                document.getElementById("closeModalContact").click()
+            }
+
+        }
+
     }
 }

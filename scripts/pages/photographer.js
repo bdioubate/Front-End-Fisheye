@@ -5,7 +5,6 @@ import btnLikes from "../utils/likes.js"
 import menuDeroulant from "../utils/sort.js"
 import lightbox from "../utils/Lightbox.js"
 import contact from "../utils/contactForm.js"
-import keyboard from "../utils/keyboard.js"
 
 //Recuperation des data dans le fichier JSON des photographes
 async function getData() {
@@ -135,9 +134,6 @@ async function initPhotographer() {
 
     // Gestion de l'événement submit sur le formulaire. 
     new contact().validationForm()
-
-    //
-    new keyboard().keyboardNav() 
     
 }
 
