@@ -36,6 +36,7 @@ export default class contact{
 
         //Modifier balise main
         const main = document.querySelector("main")
+        main.setAttribute("tabindex","0")
         main.style.display = "none"
 
         //Modifier balise header
@@ -167,6 +168,7 @@ export default class contact{
             console.log(champ[0].value)
             console.log(champ[1].value)
             console.log(champ[2].value)
+            console.log(champ[3].value)
             const btnShowContact = document.querySelector(".contact_button")
             const idBtnShowContact = btnShowContact.id
             new contact().modifierForm(idBtnShowContact)
